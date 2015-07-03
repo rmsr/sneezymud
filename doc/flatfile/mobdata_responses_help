@@ -1,0 +1,4 @@
+These files are printed as help messages when querying a specific quest using
+the 'quest' command.
+
+Migrating them will require a new database table.

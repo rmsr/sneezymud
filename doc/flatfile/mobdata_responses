@@ -1,0 +1,14 @@
+These are now kept in the mobresponses table.
+
+These files contain scripts run by mobs in response to things the players say
+or do (or give them). They are mainly how quests are run (spread out through
+all the mobs' scripts - massive spaghetti code)
+
+These are referenced in just two places, and are basically unused:
+
+cmd_sedit.cc: 'sedit' command manipulates the response file contents in an
+intelligent fashion. However, it's from 1999, probably incomplete, and only
+works if you're damescena or lapsos anyway.
+
+cmd_show.cc: 'show' command, when used on a spell component and NOT in prod
+mode, grovels through all the response files looking for load cmds.

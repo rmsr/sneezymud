@@ -1,0 +1,18 @@
+EOF
+4 factions, each of format:
+
+#[facid]
+[name]
+[leader]
+[subleader]
+[subleader]
+[subleader]
+[faction password]
+[unaffiliated hurt float] [unaffiliated help float]
+[galek hurt float] [galek help float]
+[logrus hurt float] [logrus help float]
+[serpents hurt float] [serpents help float]
+[faction power float]
+[faction wealth int] [faction tithe float]
+[caravan interval int] [caravan counter int] [caravan value int] [caravan defense int]
+[caravan attempts int] [caravan successes int] [caravan flags int]

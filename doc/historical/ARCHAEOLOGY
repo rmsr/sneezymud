@@ -1,0 +1,219 @@
+Author: Ryan Smith-Roberts (Isegrim, Mouse, others)
+
+As a codebase and as a MUD, the history of sneezymud is deep and mysterious.
+Many hands have contributed to its making, and occasional unmaking. This is a
+notebook detailing my journey of discovery and reminiscence.
+
+SneezyMUD, son of SillyMUD, son of DikuMUD.
+
+Born May 1992, Russ 'Brutius' Russell attending physician and John Brothers assisting.
+
+
+# lib dir #
+
+Most of the social archaeology of SneezyMUD takes place in here. Sadly, we
+only have a single 2011 dump of this dir, and no historical timeline for it
+apart from the occational backup copy.
+
+The best data mining technique so far is to grep based on a year you're
+interested in and refine your search from there.
+
+## txt/credits & backups ##
+
+There are three different versions of this file, one each for v5.0, v5.1,
+and v5.2. The first two include zone credits, so we can see the progression
+of the zone list (a bit) over time.
+
+## mob responses - lib vs db ##
+
+The mob responses were not deleted when they got imported into the database,
+so if we pull them out we can do a diff. Changelogs indicate this transition
+took place Dec 2006, so that is the last time the lib responses were
+ever edited.
+
+## bug/idea/typo log divination ##
+
+I found the unredacted player-submitted comments logs, and did some analysis
+on them. The entries span the following years:
+
+year  entries players
+1998:   1       1
+1999:   8       5
+2000:   572     136
+2001:   110     42
+2002:   157     45
+2003:   188     58
+2004:   191     76
+2005:   141     56
+2006:   89      39
+2007:   62      40
+2008:   163     92
+
+Obviously they are a rough guide at best to actual MUD activity, but it is
+probably the best data we'll get.
+
+Also, browsing through the list of unique names was very interesting, to see
+what fraction I recognize. Also interesting that I never posted with
+Isegrim... But somebody did with Isengrim, wasn't me. My friend Dale, on the
+other hand... I recognize a LOT of his characters in the list.
+
+I wish there was some way to find out how many unique people are represented
+by these lists of characters.
+
+# mud x,y,z #
+
+I was vaguely aware that the MUD had regularized the coordinates of rooms along a grid. I hadn't realized how well it succeeded:
+
+    * 18327 rooms
+    * 7474 at "null" 0,0,0
+    * 10593 uniques
+    * 260 duplicates
+
+Only 2.5% of rooms in the MUD database overlap with others! Some more statistics:
+
+    * X:  -66 to 101
+    * Y: -159 to 82
+    * Z:  -16 to 7
+
+No big mountains in Sneezy, that's for sure. I wonder what goes so deep... -16 is all Cimean Outpost. The next lowest zone only reaches to Level 10, and 11-15 are one room each. I suspect we could rein that in. The highest level, 7, is one room somewhere high over the Bullywug Swamp, something called 'Repo Swamp', and the castle walls and towers of Amber City. I can tell right now that Sneezy needs a mountain zone that includes altitude sickness! As an added bonus, level 6 includes 25 rooms called 'Mining Tunnel'...
+
+# smoke-filled gnomish huts #
+
+I remember logging in on a regular basis just to cruise down to north of gnome town to collect money off the floor in the huts to the west of the road. This happened because smoke from their burning fires in the enclosed rooms would choke the mobs and eventually kill them, causing them to respond, and the cycle to continue. Their corpses left behind small but steadily accumulating loot. There was a mob in the theater basement with the same problem.
+
+Well, I just found the commits related to that. Naturally it's all Peel's fault. First, on 1999/09/17 he added a one-liner to make burning things emit smoke into the room. Then, on 2001/07/17, I found one that makes anyone in the room take damage over time if the 
+
+# repo mobs #
+
+The ill-fated repo mobs whose implementation had been delegated to Dash. It was hard to tell if his implementation was bad or if the whole idea was. Repo mobs caused one of my most embarrassing moments, where I backstabbed the guy we were trying to protect from a repo mob, killing him instantly.
+
+# aging #
+
+I stumbled across a reference to age in DaleMUD's code, and decided to trace age back to DikuMUD. Turns out age was built-in from the beginning, as a system that only applies to PCs. Various secondary stats like HP, mana regen rate, etc, are derived from a curve based on age, where the very young and very old have low values with a peak at middle age. Technically the system just maps age ranges to given points and draws lines between them to find specific values, and the developers can create whatever shape they want, but the curve described above is the typical shape.
+
+Ages outside the range are mapped to the first and last values, which oddly enough are not used in calculations under any other circumstances. So 14 gets A, but 16 gets a value between B and C. Very strange, plus players start with an age of 17 anyway, so all the rest of it is pointless. The curves mostly seem to peak at 30-44, so I guess everyone can die a few times.
+
+Range partition points: -15, 15, 30, 45, 60, 80+
+
+Stats affected:
+* Diku: HP/moves max, mana/HP/moves regen rate (moves=stamina?) (mana max commented out)
+* Silly (& Dale): HP max, mana/HP/moves regen rate (ignored for mana & moves max)
+* Sneezy 2.5:  HP max, mana/HP regen rate
+
+In modern Sneezy, age stat effects are disabled completely, by having graf return 30-44 range always (unless you have the 'quest bit' TOG_REAL_AGING set of course).
+
+# C++ transition #
+
+It appears this happened early. The transition was apparently in progress as early as Oct 1994, when comments indicate three casino-game modules were converted.
+
+# SQL transition #
+
+The transition to sql seems to have started with a Nov 1999 commit by Peel about adding a postgresql lib, which was swapped out for MySQL a month later. Sneezy switched back to postgres in 2002, then back to mysql again in 2006. At this point it's probably quite database-agnostic - sneezy sqlite driver, anyone?
+
+## what's up with the immortal database ##
+
+It appears to be a staging area for editing mud objects. Each of the tables in immortal have an owner column when none of their originals do, which indicates which immortal is currently editing that object.
+
+# guildmasters and trainers - the longest journey #
+
+Ah, the old system, where you gained enough XP to level, then took an often dangerous and sometimes unknown journey to your guildmaster to gain, which gave you skill practices, and then you repeated the journey to the relevant trainers to spend them.
+
+# 2.5 #
+
+Found a directory of rent files in the 2.5 dir, very fun to see all those
+ancient player names and which ones remained active. 68kloc, vs 2010's
+366kloc. Still mostly retains the original Diku credits file. This version
+is from May 1993, and still retains many references to the brief rename to
+Motel VI.
+
+## linux port phase one ##
+
+Let's see how fast we can get 2.5 running. Depends out of date... "make depend"? Yup. makedepend emits error messages, but apparently does its thing. Putting -m32 in CFLAGS definitely did its usual trick, plus some libcrypt shenanigans. Now to add some missing declarations, and delete mismatching ones.
+
+# sneezy's license #
+
+SillyMUD inherited its license from DikuMUD, which was an early opensource license that forbids using the code for commercial activities. SneezyMUD claims in various places to be one to three rewrites away from SillyMUD, and it's likely that nearly every surviving line of code has been significantly rewritten. Nonetheless, the bones of the DikuMUD code, in the variable names and logic flow and especially the string messages, are quite evident in some sections of SneezyMUD. Of course, even if it had been left in place untouched, at this point Diku would compose less than a twelfth of SneezyMUD. It's fun to find some fragment of diku code left in sneezy, and read up and down from there, working to match the original diku source with bits of sneezy.
+
+Nonetheless, without an explicit declaration of license on what is clearly an original work, we are left making assumptions. For some, this is a troubling situation. For the more adventurous, this is an opportunity to pick any license you want by renaming the project and making some changes under the new license. This at the least obligates someone wishing to use the old code to remove all of your fixes and improvements.
+
+# DikuMUD the unique, sneezy's grandparent #
+
+SneezyMUD originated as a May 1992 fork of the SillyMUD codebase, which in turn started out as a July 1991 fork of DikuMUD's March 1991 original release. SillyMUD contains nothing from DikuMUD's second (and final) release, which was also in July.
+
+It is awe-inspiring how a group of first-year college students, in their spare time and in less than a year, created the codebase whose descendants make up such a huge percentage of the classic MUD lineages. Imagine how many different times and ways each lurking deficiency of the original code had to be laboriously repaired, over and over and over. A trade network in fixes probably flourished between its children at some point. If the group had continued making releases, would its lineage be even more vigorous? Imagine if they'd had git at the time!
+
+Plus, it finally just sank in that these guys were just a few years older than me. Ah, the heyday of C. What really drove it home was seeing similar C coding idioms that I might have used myself.
+
+## dikumud first impressions ##
+
+Got it running! Choose from classes, cleric, thief, warrior, magic-user. That's it! All the character creation that occurred. Warning about password security problem, aaaand... Simplest form of the login menu we've all come to know. Start in the northern part of the temple complex, with the statue of Odin. Only, the temple complex is... very simple. Two rooms, no donation area (I wonder which mud started that). However, this is definitely the source of that south/down duplex exit thing that I have always hated whenever it showed up.
+
+OK, the town so far is very familiar. Still got rent. Found the guildmaster. Prac gives me a huge list of skills I might practice. Obviously no trainers here! Same sewer entrance under the cleric guildmaster - I guess he likes a quick getaway? Found the pet store! Exists all the way back here! I always felt pets were a weird bolt-on for Sneezy, given how often it crashed and how one lost the pet over the reboot. They certainly entered the design history early though! Also, hunger, thirst, drunkenness, all here.
+
+Just noticed I'm a 24th level immortal, being the first user created on the MUD. Still doesn't get me into the Swordsman's guild though....
+
+OK, creating a user-level character, Beorat the (male) thief. Look ma, no gear! Naked here too, only no donation bin. Found the thieve's guildmaster... maybe every guildmaster has an entrance into the sewer system in his office. Wandered across my first dikumud kill, "Odif Yltsaeb is here, walking backwards." I remember seeing Beastly Fido romping around the temple complex in one of the muds. Now I have discovered a shop that sells a raft and a canoe! I'm pretty sure I remember both of thse being for sale in multiple waterfront locations in sneezy. Found a Beastly Fido, which killed me.
+
+I love the vaguely insulting way it responds to every unknown command the same way, "Arglebargle, glop-glyf!?!"
+
+Well, spent some time poking around, not a lot of textual variety involved in an old mud like this. We all have to start somewhere though! Wonder if alfa comes with a changelog... news? Interesting to see the very first dikimud news file, but the alfa update mentions a few room changes only.
+
+# sillymud, who begat sneezy #
+
+SillyMUD is based on the original March DikuMUD release, and was itself started in August 1991. So, by the May 1992 Sneezy fork, SillyMUD had many months of work under its belt. The code I found on the net is even fresher, from 1993.
+
+Note: just found "Silly.tar.Z: ftp.cis.ufl.edu (pub/games/mud/)", but the usual Google searches found basically nothing. Cannot seem to search archive.org's contents. Sad.
+
+In any case, the only archives I could find are 1993 snapshots, whose 87kloc far exceed the 68kloc Sneezy 2.5 has. Nonetheless, both outshine the 28kloc of Diku, and SneezyMUD eventually blossomed to over ten times as large as Diku.
+
+## sillymud first impressions ##
+
+This is my log if connecting to a fresh run of the second relase. Its porting is detailed in the section
+
+Login screen is a very simple design. Character-based login, no master account. Character creation process, recreating Isegrim the Human Deikhan Tank:
+    * Choose a race (of 14) - I chose human of course
+    * Alignment g/n/e, Gender m/f - Good Male
+    * Stat allocation by ranking - You order your stats by most important to least, it does the rest. I chose Str Wis Con Dex Cha Int
+    * Class selection, 2 & 3 class multiclass available - I chose Fighter/Cleric vs Druid, Thief, Monk, "Magic-user"
+    * Login screen. Cannot list current logins. Can enter the game at different cities.  Interesting things so far: * Multiclass character creation (vs "cyclical" multiclass) * Enter any town via login screen - provided you rented or idled out Fascinating to see how many of the new features in the lib/news file are implemented in Sneezy. I can only say that a diff from Silly 1.2a code to Sneezy 2.5 code is not very illuminating. Lots of independent code churn over a small shared codebase. Nonetheless, given that one of the SneezyMUD founders also worked on SillyMUD, I suspect the latter kept track of the former closely.
+
+Now if I only weren't stuck naked in the Void, a room with no exits. A classic beginning for a God I guess. I seem to have 'redit' access, but I probably shouldn't edit a door to the void, instead I ought to transport myself. How to do that...
+
+## second impressions ##
+
+Well, that's root that's stuck in there, how about a mortal player? Second player created, Beoratus, causes the MUD to exit when they try to enter the game world - the menu says Midgaard, but the MUD is init'ing Shire zone, which makes sense as home base for a hobbit thief. Don't go to the shire I guess. Third char SplashDamage the fairy wizard successfully enters Midgaard.
+
+Ack, no scan command! I can't seem to get it to print the room exits with the description. Character titles have binary garbage in them by default. The command 'allspells' outputs 223 spells. The dir lib/security has all of the actual MUD gods and their access levels in it.
+
+Batches of messages similar to this keep recurring, I think the MUD doesn't like this condition: "tawny cougar's size of damage dice is negative".
+
+Ah! Thanks to the 'stat' god cmd I have learned that the Void DOES have an exit, 'up'. I guess I learned to use the exit command religiously later.
+
+Found reception, but you can only rent during business hours...
+
+The entrance hall itself has two cardinal exits that both connect to the same room. Also, there are no diagonal exits!
+
+Found the 'donation room', suddely this starting temple layout is starting to seem familiar from other MUDs I've played or logged into, in particular the donation room being a dead end to the east.
+
+# linux port phase two #
+
+Had to hack on these old codebases to get em running, y'know? Like a modern mechanic finding a cherry 50s car in a garage somewhere and getting it running.
+
+## sillymud port ##
+
+Let us see if I can port SillyMUD to Ubuntu 15.04. This is the outline of a much longer section
+
+-gcc and ld flags needed
+-a few old-school cleanups
+-crashes on socket connect
+-oops, 64-bit, need 32-bit libraries to use -m32 flag
+-yay, runs-mostly! - see first / second impressions for details
+-clamps %D to nonnegative values, but still crashes when a positive value is expected
+-s/%D/%d/g seems to fix it
+-previously broken functions now working
+
+## dikumud port ##
+
+Since SillyMUD is based on gamma and not alfa, I would need to port gamma for my first run experience anyway. Fortunately, gamma is already ported! I just needed to add a couple of flags to the makefile, enable 32-bit compilation, and - build! To keep things simple I changed the default port to 4001, since I am doing this is parallel with Sillymud.
+
+Diku crashes on startup with an assert about not passing a negative value to dice(). Sound familiar? Let's see how silly fixed this. Somehwere in there the negative value is getting clamped to zero, which permits more functionality but still crashes. It appears that significant use of the obsolete and totally ignored %D format specifier is causing issues. How did Sneezy 2.5 fix it? Looks like just downconverted all those to %d. Does that work? Yup! Let's check Sillymud!

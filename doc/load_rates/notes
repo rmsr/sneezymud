@@ -1,0 +1,43 @@
+Here are the details:
+
+The change to load starts with the Zonefile configuration this is the base setting.
+
+Now we have some different groups of objects.
+
+1) Suit-Sets -- Sneezy has an array of sets of equipment. They have been bundled together. Suits can be set indepenently of other equipment. Below is an example of what would be considered a suit. Equipment that is singular is classified differently.
+
+                platemail helm
+
+                platemail collar
+                platemail suit
+
+                platemail armband
+                platemail gauntlet
+
+                platemail girth
+                platemail bracer
+
+                platemail legging
+                platemail boot
+                brass knuckles
+
+                kite shield
+                purple black cape
+
+
+2) Non-Suit -- Items that don't follow into Suit-Sets are weapons, non-suit equipment, and objects like keys/food
+
+
+The zonefile again is the base starting point of where the load rate is set. The game has algorithm for the two options above as well as some global static settings. So you can tinker with suit-set drop rates or non-suit drop rates, they are independent of each other.
+
+Ok now the dilemma, you can't increase/decrease weapons without affecting drop for things that are not Suit-Sets by using the algorithms. If you want weapons to drop in a zone 1 in 10 times, then you impact all the other gear too. Better still if you have multiple mobs in a zone that drop weapons and you still want that 1/10 ? If you have 10+ mobs like in the frontier then you will need to make that 1/100.
+
+The game doesn't scale well using these algorithms when applied to dissimliar items and zones with dissimiliar body/item count.
+
+The algroithm is a sledge hammer approach that has impacted game play for a very long time (in my opinion). So what to do.
+
+Obviously a major code revision needs to happen to deal with this issue. The other temporary solution is to set a fixed rate for weapons/non-suit items and start adjusting all the zone files. This will take some time..
+
+So for the time being, I suggest raising the rates on weapons/non-suit and suit items to 1 in 10.  This will be a decrease in suit items (which is out of wack) and bring the other higher. The possible combo though is 2/10 , you would get a suit item and a weapon.
+
+Obviously the code needs a bit of shaping to be the complex needs.

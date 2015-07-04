@@ -1,0 +1,51 @@
+Edit: /code/code/misc/player_data.cc
+Remark lines 255-259 (used host dns code)
+Resolves issue "This is your first logon"
+
+edit /code/code/sys/db.cc
+Line 156:
+Current:int fixed_chance = .2;
+Edit To:int fixed_chance = 15;
+
+Resolves: Increases drop rates for E: zonefile items, which include weapons and other objects
+
+[EDIT LOCATION]
+/code/code/misc/loadset.cc
+
+Line 179
+Current:  // obj_lp_ratio = 1 - pow(exp(1), ((log(1 - 0.01*cbrt((double)obj_lp))/(double)obj_lp)));
+Edit To:  dboule obj_lp_ratio = 1 - pow(exp(1), ((log(1 - 0.01*cbrt((double)obj_lp))/(double)obj_lp)));
+
+Line 185
+Current: (::number(0,9999999) < (int) (10000000 * adj_obj_lp_ratio * stats.equip))) {
+Edit To: (::number(0,9999999) < (int) (5000*adj_obj_lp_ratio / obj_lp_ratio*stats.equip))) {
+
+Resolves: Issue with too many armor drops corrected, set to prior code release avg 40 per 100 kills
+
+[EDIT LOCATION]
+/code/code/sys/socket.cc
+Remark lines 616-633
+Resolves: Removes atrophy load rate code
+
+
+[EDIT LOCATION]
+/code/code/misc/statistics.cc
+
+Line 67
+Current: //stats.equip = 0.7;   // this affects the load rate of things
+Edit To: stats.equip = 0.7;   // this affects the load rate of things
+
+Resolves: sets variable for load rates, required for calucations
+
+[EDIT LOCATION]
+/code/code/misc/mob_loader.cc
+
+Line: 943
+Current:  const int level_min = 40;
+Edit To:  const int level_min = 35;
+
+Line 949
+Current:  if (::number(0,249))
+Edit To:  if (::number(0,99))
+
+Resolves: More reasonable potion drops

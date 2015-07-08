@@ -1,0 +1,1348 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Account',
+            fields=[
+                ('account_id', models.BigIntegerField(serialize=False, primary_key=True)),
+                ('email', models.CharField(max_length=80, blank=True)),
+                ('passwd', models.CharField(max_length=13, blank=True)),
+                ('name', models.CharField(max_length=80, blank=True)),
+                ('birth', models.IntegerField(null=True, blank=True)),
+                ('term', models.IntegerField(null=True, blank=True)),
+                ('time_adjust', models.IntegerField(null=True, blank=True)),
+                ('flags', models.IntegerField(null=True, blank=True)),
+                ('last_logon', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'account',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Blockedlist',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('player_id', models.IntegerField(null=True, blank=True)),
+                ('blocked', models.CharField(max_length=33, blank=True)),
+            ],
+            options={
+                'db_table': 'blockedlist',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='BoardMessage',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('board_vnum', models.IntegerField()),
+                ('post_num', models.IntegerField(null=True, blank=True)),
+                ('date_posted', models.DateTimeField()),
+                ('date_removed', models.DateTimeField(null=True, blank=True)),
+                ('subject', models.CharField(max_length=80, blank=True)),
+                ('author', models.CharField(max_length=80, blank=True)),
+                ('post', models.TextField(blank=True)),
+            ],
+            options={
+                'db_table': 'board_message',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Brickquest',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('numbricks', models.IntegerField(null=True, blank=True)),
+                ('name', models.CharField(max_length=30)),
+            ],
+            options={
+                'db_table': 'brickquest',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Cgisession',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('session_id', models.CharField(max_length=32, blank=True)),
+                ('account_id', models.IntegerField(null=True, blank=True)),
+                ('duration', models.IntegerField(null=True, blank=True)),
+                ('timeset', models.IntegerField(null=True, blank=True)),
+                ('name', models.CharField(max_length=32, blank=True)),
+            ],
+            options={
+                'db_table': 'cgisession',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Commodprices',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('logtime', models.DateTimeField()),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('material', models.IntegerField(null=True, blank=True)),
+                ('price', models.FloatField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'commodprices',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Corpaccess',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('corp_id', models.IntegerField()),
+                ('access', models.IntegerField()),
+                ('player_id', models.IntegerField(null=True, blank=True)),
+                ('name', models.CharField(max_length=80, blank=True)),
+            ],
+            options={
+                'db_table': 'corpaccess',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Corplog',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('corp_id', models.IntegerField(null=True, blank=True)),
+                ('name', models.CharField(max_length=80, blank=True)),
+                ('action', models.CharField(max_length=80, blank=True)),
+                ('talens', models.IntegerField(null=True, blank=True)),
+                ('corptalens', models.IntegerField(null=True, blank=True)),
+                ('logtime', models.DateTimeField()),
+            ],
+            options={
+                'db_table': 'corplog',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Corporation',
+            fields=[
+                ('corp_id', models.BigIntegerField(serialize=False, primary_key=True)),
+                ('name', models.CharField(max_length=80)),
+                ('bank', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'corporation',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='DrugUse',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('drug_id', models.IntegerField(null=True, blank=True)),
+                ('player_id', models.IntegerField(null=True, blank=True)),
+                ('first_use_sec', models.IntegerField(null=True, blank=True)),
+                ('first_use_min', models.IntegerField(null=True, blank=True)),
+                ('first_use_hour', models.IntegerField(null=True, blank=True)),
+                ('first_use_day', models.IntegerField(null=True, blank=True)),
+                ('first_use_mon', models.IntegerField(null=True, blank=True)),
+                ('first_use_year', models.IntegerField(null=True, blank=True)),
+                ('last_use_sec', models.IntegerField(null=True, blank=True)),
+                ('last_use_min', models.IntegerField(null=True, blank=True)),
+                ('last_use_hour', models.IntegerField(null=True, blank=True)),
+                ('last_use_day', models.IntegerField(null=True, blank=True)),
+                ('last_use_mon', models.IntegerField(null=True, blank=True)),
+                ('last_use_year', models.IntegerField(null=True, blank=True)),
+                ('total_consumed', models.IntegerField(null=True, blank=True)),
+                ('current_consumed', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'drug_use',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Factionmembers',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=80)),
+                ('faction', models.CharField(max_length=8, blank=True)),
+                ('level', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'factionmembers',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Factoryblueprint',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('vnum', models.IntegerField(null=True, blank=True)),
+                ('supplytype', models.IntegerField(null=True, blank=True)),
+                ('supplyamt', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'factoryblueprint',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Factoryproducing',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('vnum', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'factoryproducing',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Factorysupplies',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('supplytype', models.IntegerField(null=True, blank=True)),
+                ('supplyname', models.CharField(max_length=16, blank=True)),
+                ('supplyamt', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'factorysupplies',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Fishkeeper',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=80)),
+                ('weight', models.FloatField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'fishkeeper',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Fishlargest',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=80, blank=True)),
+                ('vnum', models.IntegerField(null=True, blank=True)),
+                ('weight', models.FloatField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'fishlargest',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Gamblers',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('player_id', models.IntegerField()),
+                ('money', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'gamblers',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Globaltoggles',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('tog_id', models.IntegerField()),
+                ('toggle', models.IntegerField(null=True, blank=True)),
+                ('testcode', models.IntegerField(null=True, blank=True)),
+                ('name', models.CharField(max_length=80, blank=True)),
+                ('descr', models.CharField(max_length=256, blank=True)),
+            ],
+            options={
+                'db_table': 'globaltoggles',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='ImmortalExchangeCoin',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('k_coin', models.IntegerField()),
+                ('created_by', models.IntegerField(null=True, blank=True)),
+                ('created_for', models.IntegerField(null=True, blank=True)),
+                ('redeemed_by', models.IntegerField(null=True, blank=True)),
+                ('redeemed_for', models.IntegerField(null=True, blank=True)),
+                ('date_created', models.DateTimeField(null=True, blank=True)),
+                ('date_redeemed', models.DateTimeField(null=True, blank=True)),
+                ('utility_flag', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'immortal_exchange_coin',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Itemtypes',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type', models.IntegerField(null=True, blank=True)),
+                ('name', models.CharField(max_length=32, blank=True)),
+            ],
+            options={
+                'db_table': 'itemtypes',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Lowtasks',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('priority', models.IntegerField(null=True, blank=True)),
+                ('assigned_to', models.CharField(max_length=80, blank=True)),
+                ('task', models.TextField(blank=True)),
+                ('status', models.CharField(max_length=80, blank=True)),
+            ],
+            options={
+                'db_table': 'lowtasks',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Mail',
+            fields=[
+                ('mailid', models.BigIntegerField(serialize=False, primary_key=True)),
+                ('port', models.IntegerField(null=True, blank=True)),
+                ('mailfrom', models.CharField(max_length=80, blank=True)),
+                ('mailto', models.CharField(max_length=80, blank=True)),
+                ('timesent', models.CharField(max_length=32, blank=True)),
+                ('content', models.CharField(max_length=4000, blank=True)),
+                ('talens', models.IntegerField(null=True, blank=True)),
+                ('rent_id', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'mail',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Material',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('num', models.IntegerField(null=True, blank=True)),
+                ('name', models.CharField(max_length=32, blank=True)),
+            ],
+            options={
+                'db_table': 'material',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Mob',
+            fields=[
+                ('vnum', models.IntegerField(serialize=False, primary_key=True)),
+                ('name', models.CharField(max_length=127)),
+                ('short_desc', models.CharField(max_length=127)),
+                ('long_desc', models.CharField(max_length=255)),
+                ('description', models.TextField()),
+                ('actions', models.IntegerField()),
+                ('affects', models.IntegerField()),
+                ('faction', models.IntegerField()),
+                ('fact_perc', models.IntegerField()),
+                ('letter', models.CharField(max_length=1)),
+                ('attacks', models.FloatField()),
+                ('class_field', models.IntegerField(db_column=b'class')),
+                ('level', models.IntegerField()),
+                ('tohit', models.IntegerField()),
+                ('ac', models.FloatField()),
+                ('hpbonus', models.FloatField()),
+                ('damage_level', models.FloatField()),
+                ('damage_precision', models.IntegerField()),
+                ('gold', models.IntegerField()),
+                ('race', models.IntegerField()),
+                ('weight', models.IntegerField()),
+                ('height', models.IntegerField()),
+                ('str', models.IntegerField()),
+                ('bra', models.IntegerField()),
+                ('con', models.IntegerField()),
+                ('dex', models.IntegerField()),
+                ('agi', models.IntegerField()),
+                ('intel', models.IntegerField()),
+                ('wis', models.IntegerField()),
+                ('foc', models.IntegerField()),
+                ('per', models.IntegerField()),
+                ('cha', models.IntegerField()),
+                ('kar', models.IntegerField()),
+                ('spe', models.IntegerField()),
+                ('pos', models.IntegerField()),
+                ('def_position', models.IntegerField()),
+                ('sex', models.IntegerField()),
+                ('spec_proc', models.IntegerField()),
+                ('skin', models.IntegerField()),
+                ('vision', models.IntegerField()),
+                ('can_be_seen', models.IntegerField()),
+                ('max_exist', models.IntegerField()),
+                ('local_sound', models.CharField(max_length=255, blank=True)),
+                ('adjacent_sound', models.CharField(max_length=255, blank=True)),
+            ],
+            options={
+                'db_table': 'mob',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='MobExtra',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('vnum', models.IntegerField()),
+                ('keyword', models.CharField(max_length=32)),
+                ('description', models.CharField(max_length=255, blank=True)),
+            ],
+            options={
+                'db_table': 'mob_extra',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='MobImm',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('vnum', models.IntegerField()),
+                ('type', models.IntegerField()),
+                ('amt', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'mob_imm',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Mobresponses',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('vnum', models.IntegerField()),
+                ('response', models.TextField()),
+            ],
+            options={
+                'db_table': 'mobresponses',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Obj',
+            fields=[
+                ('vnum', models.IntegerField(serialize=False, primary_key=True)),
+                ('name', models.CharField(max_length=127)),
+                ('short_desc', models.CharField(max_length=127)),
+                ('long_desc', models.CharField(max_length=255)),
+                ('action_desc', models.CharField(max_length=255)),
+                ('type', models.IntegerField()),
+                ('action_flag', models.IntegerField()),
+                ('wear_flag', models.IntegerField()),
+                ('val0', models.IntegerField()),
+                ('val1', models.IntegerField()),
+                ('val2', models.IntegerField()),
+                ('val3', models.IntegerField()),
+                ('weight', models.FloatField()),
+                ('price', models.IntegerField()),
+                ('can_be_seen', models.IntegerField()),
+                ('spec_proc', models.IntegerField()),
+                ('max_exist', models.IntegerField()),
+                ('max_struct', models.IntegerField()),
+                ('cur_struct', models.IntegerField()),
+                ('decay', models.IntegerField()),
+                ('volume', models.IntegerField()),
+                ('material', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'obj',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Objaffect',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('vnum', models.IntegerField()),
+                ('type', models.IntegerField()),
+                ('mod1', models.IntegerField()),
+                ('mod2', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'objaffect',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Objextra',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('vnum', models.IntegerField()),
+                ('name', models.CharField(max_length=127)),
+                ('description', models.TextField()),
+            ],
+            options={
+                'db_table': 'objextra',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='ObjLoadMinLevel',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('obj_vnum', models.IntegerField(null=True, blank=True)),
+                ('mob_vnum', models.IntegerField(null=True, blank=True)),
+                ('mob_level', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'obj_load_min_level',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Objlog',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('vnum', models.IntegerField()),
+                ('loadtime', models.DateTimeField()),
+                ('objcount', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'objlog',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Permadeath',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=80)),
+                ('level', models.IntegerField(null=True, blank=True)),
+                ('died', models.IntegerField(null=True, blank=True)),
+                ('killer', models.CharField(max_length=80, blank=True)),
+            ],
+            options={
+                'db_table': 'permadeath',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Pet',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('player_id', models.IntegerField(null=True, blank=True)),
+                ('vnum', models.IntegerField(null=True, blank=True)),
+                ('exp', models.FloatField(null=True, blank=True)),
+                ('name', models.CharField(max_length=32, blank=True)),
+                ('level', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'pet',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Pings',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('host', models.TextField(blank=True)),
+                ('pingtime', models.FloatField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'pings',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Player',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(unique=True, max_length=80, blank=True)),
+                ('talens', models.IntegerField(null=True, blank=True)),
+                ('title', models.CharField(max_length=80, blank=True)),
+                ('account_id', models.IntegerField(null=True, blank=True)),
+                ('guild_id', models.IntegerField(null=True, blank=True)),
+                ('guildrank', models.IntegerField(null=True, blank=True)),
+                ('load_room', models.IntegerField(null=True, blank=True)),
+                ('last_logon', models.IntegerField(null=True, blank=True)),
+                ('nutrition', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'player',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Playerprompt',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('player_id', models.IntegerField(null=True, blank=True)),
+                ('p_type', models.IntegerField(null=True, blank=True)),
+                ('hp', models.CharField(max_length=20, blank=True)),
+                ('mana', models.CharField(max_length=20, blank=True)),
+                ('move', models.CharField(max_length=20, blank=True)),
+                ('money', models.CharField(max_length=20, blank=True)),
+                ('exp', models.CharField(max_length=20, blank=True)),
+                ('room', models.CharField(max_length=20, blank=True)),
+                ('opp', models.CharField(max_length=20, blank=True)),
+                ('tank', models.CharField(max_length=20, blank=True)),
+                ('piety', models.CharField(max_length=20, blank=True)),
+                ('lifeforce', models.CharField(max_length=20, blank=True)),
+                ('time', models.CharField(max_length=20, blank=True)),
+            ],
+            options={
+                'db_table': 'playerprompt',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Poll',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('poll_id', models.IntegerField()),
+                ('descr', models.CharField(max_length=127, blank=True)),
+                ('status', models.CharField(max_length=8, blank=True)),
+            ],
+            options={
+                'db_table': 'poll',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='PollOption',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('option_id', models.IntegerField()),
+                ('poll_id', models.IntegerField()),
+                ('descr', models.CharField(max_length=127, blank=True)),
+            ],
+            options={
+                'db_table': 'poll_option',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='PollVote',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('account', models.CharField(max_length=80)),
+                ('poll_id', models.IntegerField()),
+                ('option_id', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'poll_vote',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Property',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=80, blank=True)),
+                ('owner', models.IntegerField(null=True, blank=True)),
+                ('key_vnum', models.IntegerField(null=True, blank=True)),
+                ('entrance', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'property',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Querytimes',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('query', models.CharField(max_length=512, blank=True)),
+                ('secs', models.FloatField(null=True, blank=True)),
+                ('date_logged', models.DateTimeField()),
+            ],
+            options={
+                'db_table': 'querytimes',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='QuestLimbs',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('player', models.CharField(max_length=80)),
+                ('team', models.CharField(max_length=30, blank=True)),
+                ('mob_vnum', models.IntegerField()),
+                ('slot_num', models.IntegerField()),
+                ('slot_name', models.CharField(max_length=127, blank=True)),
+                ('date_submitted', models.DateTimeField()),
+            ],
+            options={
+                'db_table': 'quest_limbs',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='QuestLimbsTeam',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('team', models.CharField(max_length=30, blank=True)),
+                ('player', models.CharField(max_length=80)),
+            ],
+            options={
+                'db_table': 'quest_limbs_team',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Rent',
+            fields=[
+                ('rent_id', models.IntegerField(serialize=False, primary_key=True)),
+                ('owner_type', models.CharField(max_length=6, blank=True)),
+                ('owner', models.IntegerField()),
+                ('slot', models.IntegerField()),
+                ('vnum', models.IntegerField()),
+                ('container', models.IntegerField()),
+                ('val0', models.IntegerField()),
+                ('val1', models.IntegerField()),
+                ('val2', models.IntegerField()),
+                ('val3', models.IntegerField()),
+                ('extra_flags', models.IntegerField()),
+                ('weight', models.FloatField(null=True, blank=True)),
+                ('bitvector', models.IntegerField()),
+                ('decay', models.IntegerField()),
+                ('cur_struct', models.IntegerField()),
+                ('max_struct', models.IntegerField()),
+                ('material', models.IntegerField()),
+                ('volume', models.IntegerField()),
+                ('price', models.IntegerField()),
+                ('depreciation', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'rent',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='RentObjAff',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('rent_id', models.IntegerField()),
+                ('type', models.IntegerField()),
+                ('level', models.IntegerField()),
+                ('duration', models.IntegerField()),
+                ('renew', models.IntegerField()),
+                ('modifier', models.IntegerField()),
+                ('location', models.IntegerField()),
+                ('modifier2', models.IntegerField()),
+                ('bitvector', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'rent_obj_aff',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='RentStrung',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('rent_id', models.IntegerField()),
+                ('name', models.CharField(max_length=127)),
+                ('short_desc', models.CharField(max_length=127)),
+                ('long_desc', models.CharField(max_length=255)),
+                ('action_desc', models.CharField(max_length=255)),
+            ],
+            options={
+                'db_table': 'rent_strung',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Room',
+            fields=[
+                ('vnum', models.IntegerField(serialize=False, primary_key=True)),
+                ('x', models.IntegerField()),
+                ('y', models.IntegerField()),
+                ('z', models.IntegerField()),
+                ('name', models.CharField(max_length=127)),
+                ('description', models.TextField()),
+                ('zone', models.IntegerField()),
+                ('room_flag', models.IntegerField()),
+                ('sector', models.IntegerField()),
+                ('teletime', models.IntegerField()),
+                ('teletarg', models.IntegerField()),
+                ('telelook', models.IntegerField()),
+                ('river_speed', models.IntegerField()),
+                ('river_dir', models.IntegerField()),
+                ('capacity', models.IntegerField()),
+                ('height', models.IntegerField()),
+                ('spec', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'room',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Roomexit',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('vnum', models.IntegerField()),
+                ('direction', models.IntegerField()),
+                ('name', models.CharField(max_length=127)),
+                ('description', models.TextField()),
+                ('type', models.IntegerField()),
+                ('condition_flag', models.IntegerField()),
+                ('lock_difficulty', models.IntegerField()),
+                ('weight', models.IntegerField()),
+                ('key_num', models.IntegerField()),
+                ('destination', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'roomexit',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Roomextra',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('vnum', models.IntegerField()),
+                ('name', models.TextField()),
+                ('description', models.TextField()),
+            ],
+            options={
+                'db_table': 'roomextra',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='ShipDestinations',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('vnum', models.IntegerField(null=True, blank=True)),
+                ('name', models.CharField(max_length=32, blank=True)),
+                ('room', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'ship_destinations',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='ShipMaster',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('captain_vnum', models.IntegerField()),
+                ('account_id', models.IntegerField(null=True, blank=True)),
+                ('player_id', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'ship_master',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shop',
+            fields=[
+                ('shop_nr', models.IntegerField(serialize=False, primary_key=True)),
+                ('profit_buy', models.FloatField()),
+                ('profit_sell', models.FloatField()),
+                ('no_such_item1', models.CharField(max_length=127)),
+                ('no_such_item2', models.CharField(max_length=127)),
+                ('do_not_buy', models.CharField(max_length=127)),
+                ('missing_cash1', models.CharField(max_length=127)),
+                ('missing_cash2', models.CharField(max_length=127)),
+                ('message_buy', models.CharField(max_length=127)),
+                ('message_sell', models.CharField(max_length=127)),
+                ('temper1', models.IntegerField()),
+                ('temper2', models.IntegerField()),
+                ('keeper', models.IntegerField()),
+                ('flags', models.IntegerField()),
+                ('in_room', models.IntegerField()),
+                ('open1', models.IntegerField()),
+                ('close1', models.IntegerField()),
+                ('open2', models.IntegerField()),
+                ('close2', models.IntegerField()),
+                ('expense_ratio', models.FloatField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shop',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopgoldtmp',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('gold', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopgoldtmp',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shoplog',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('name', models.CharField(max_length=80, blank=True)),
+                ('action', models.CharField(max_length=32, blank=True)),
+                ('item', models.CharField(max_length=80, blank=True)),
+                ('talens', models.IntegerField(null=True, blank=True)),
+                ('shoptalens', models.IntegerField(null=True, blank=True)),
+                ('shopvalue', models.IntegerField(null=True, blank=True)),
+                ('logtime', models.DateTimeField()),
+                ('itemcount', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shoplog',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shoplogaccountchart',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('post_ref', models.IntegerField(null=True, blank=True)),
+                ('name', models.TextField(blank=True)),
+            ],
+            options={
+                'db_table': 'shoplogaccountchart',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shoplogarchive',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('name', models.CharField(max_length=80, blank=True)),
+                ('action', models.CharField(max_length=32, blank=True)),
+                ('item', models.CharField(max_length=80, blank=True)),
+                ('talens', models.IntegerField(null=True, blank=True)),
+                ('shoptalens', models.IntegerField(null=True, blank=True)),
+                ('shopvalue', models.IntegerField(null=True, blank=True)),
+                ('logtime', models.DateTimeField()),
+                ('itemcount', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shoplogarchive',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shoplogcogs',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('obj_name', models.CharField(max_length=128, blank=True)),
+                ('count', models.IntegerField(null=True, blank=True)),
+                ('total_cost', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shoplogcogs',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shoplogjournal',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('journal_id', models.IntegerField()),
+                ('customer_name', models.TextField(blank=True)),
+                ('obj_name', models.TextField(blank=True)),
+                ('logtime', models.DateTimeField()),
+                ('post_ref', models.IntegerField(null=True, blank=True)),
+                ('debit', models.IntegerField(null=True, blank=True)),
+                ('credit', models.IntegerField(null=True, blank=True)),
+                ('sneezy_year', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shoplogjournal',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shoplogjournalarchive',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('journal_id', models.IntegerField()),
+                ('customer_name', models.TextField(blank=True)),
+                ('obj_name', models.TextField(blank=True)),
+                ('logtime', models.DateTimeField()),
+                ('post_ref', models.IntegerField(null=True, blank=True)),
+                ('debit', models.IntegerField(null=True, blank=True)),
+                ('credit', models.IntegerField(null=True, blank=True)),
+                ('sneezy_year', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shoplogjournalarchive',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopmaterial',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField()),
+                ('mat_type', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'shopmaterial',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopowned',
+            fields=[
+                ('shop_nr', models.IntegerField(serialize=False, primary_key=True)),
+                ('profit_buy', models.FloatField()),
+                ('profit_sell', models.FloatField()),
+                ('max_num', models.IntegerField(null=True, blank=True)),
+                ('corp_id', models.IntegerField(null=True, blank=True)),
+                ('dividend', models.FloatField(null=True, blank=True)),
+                ('reserve_max', models.IntegerField(null=True, blank=True)),
+                ('reserve_min', models.IntegerField(null=True, blank=True)),
+                ('no_such_item1', models.CharField(max_length=127, blank=True)),
+                ('no_such_item2', models.CharField(max_length=127, blank=True)),
+                ('do_not_buy', models.CharField(max_length=127, blank=True)),
+                ('missing_cash1', models.CharField(max_length=127, blank=True)),
+                ('missing_cash2', models.CharField(max_length=127, blank=True)),
+                ('message_buy', models.CharField(max_length=127, blank=True)),
+                ('message_sell', models.CharField(max_length=127, blank=True)),
+                ('tax_nr', models.IntegerField(null=True, blank=True)),
+                ('gold', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopowned',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedaccess',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField()),
+                ('name', models.CharField(max_length=80)),
+                ('access', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'shopownedaccess',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedauction',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('ticket', models.IntegerField(null=True, blank=True)),
+                ('bidder', models.IntegerField(null=True, blank=True)),
+                ('buyout', models.IntegerField(null=True, blank=True)),
+                ('days', models.IntegerField(null=True, blank=True)),
+                ('current_bid', models.IntegerField(null=True, blank=True)),
+                ('max_bid', models.IntegerField(null=True, blank=True)),
+                ('seller', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownedauction',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedbank',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('player_id', models.IntegerField(null=True, blank=True)),
+                ('talens', models.IntegerField(null=True, blank=True)),
+                ('earned_interest', models.FloatField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownedbank',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedcentralbank',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('bank', models.IntegerField(null=True, blank=True)),
+                ('centralbank', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownedcentralbank',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedcorpbank',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('corp_id', models.IntegerField(null=True, blank=True)),
+                ('talens', models.IntegerField(null=True, blank=True)),
+                ('earned_interest', models.FloatField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownedcorpbank',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedloanrate',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('x', models.IntegerField(null=True, blank=True)),
+                ('y', models.IntegerField(null=True, blank=True)),
+                ('term', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownedloanrate',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedloans',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('player_id', models.IntegerField(null=True, blank=True)),
+                ('amt', models.IntegerField(null=True, blank=True)),
+                ('granted_time', models.IntegerField(null=True, blank=True)),
+                ('term', models.IntegerField(null=True, blank=True)),
+                ('rate', models.FloatField(null=True, blank=True)),
+                ('default_charge', models.FloatField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownedloans',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedmatch',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('match_str', models.CharField(max_length=128, blank=True)),
+                ('profit_buy', models.FloatField(null=True, blank=True)),
+                ('profit_sell', models.FloatField(null=True, blank=True)),
+                ('max_num', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownedmatch',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownednpcloan',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('loan_id', models.IntegerField(null=True, blank=True)),
+                ('amt', models.IntegerField(null=True, blank=True)),
+                ('rate', models.FloatField(null=True, blank=True)),
+                ('risk', models.FloatField(null=True, blank=True)),
+                ('owner', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownednpcloan',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedplayer',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('player', models.CharField(max_length=128, blank=True)),
+                ('profit_buy', models.FloatField(null=True, blank=True)),
+                ('profit_sell', models.FloatField(null=True, blank=True)),
+                ('max_num', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownedplayer',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedratios',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField()),
+                ('obj_nr', models.IntegerField()),
+                ('profit_buy', models.FloatField(null=True, blank=True)),
+                ('profit_sell', models.FloatField(null=True, blank=True)),
+                ('max_num', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownedratios',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopownedrepair',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField(null=True, blank=True)),
+                ('speed', models.FloatField(null=True, blank=True)),
+                ('quality', models.FloatField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'shopownedrepair',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shopproducing',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField()),
+                ('producing', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'shopproducing',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Shoptype',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('shop_nr', models.IntegerField()),
+                ('type', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'shoptype',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Tellhistory',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('tellfrom', models.CharField(max_length=80, blank=True)),
+                ('tellto', models.CharField(max_length=80, blank=True)),
+                ('tell', models.CharField(max_length=1024, blank=True)),
+                ('telltime', models.DateTimeField()),
+            ],
+            options={
+                'db_table': 'tellhistory',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Trophy',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('player_id', models.IntegerField()),
+                ('mobvnum', models.IntegerField()),
+                ('count', models.FloatField()),
+                ('totalcount', models.FloatField()),
+            ],
+            options={
+                'db_table': 'trophy',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Trophymob',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('mobvnum', models.IntegerField()),
+            ],
+            options={
+                'db_table': 'trophymob',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Trophyplayer',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('player_id', models.IntegerField()),
+                ('count', models.IntegerField(null=True, blank=True)),
+                ('totalcount', models.FloatField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'trophyplayer',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Usagelogs',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('time', models.IntegerField(null=True, blank=True)),
+                ('players', models.IntegerField(null=True, blank=True)),
+                ('port', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'usagelogs',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Usagelogsarchive',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('time', models.IntegerField(null=True, blank=True)),
+                ('players', models.IntegerField(null=True, blank=True)),
+                ('port', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'usagelogsarchive',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Wholist',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=80, blank=True)),
+                ('title', models.CharField(max_length=256, blank=True)),
+                ('port', models.IntegerField(null=True, blank=True)),
+                ('invis', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'wholist',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Wizpower',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('player_id', models.IntegerField(null=True, blank=True)),
+                ('wizpower', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'wizpower',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Zone',
+            fields=[
+                ('zone_nr', models.IntegerField(serialize=False, primary_key=True)),
+                ('zone_name', models.CharField(max_length=255)),
+                ('zone_enabled', models.IntegerField(null=True, blank=True)),
+                ('bottom', models.IntegerField(null=True, blank=True)),
+                ('top', models.IntegerField(null=True, blank=True)),
+                ('reset_mode', models.IntegerField(null=True, blank=True)),
+                ('lifespan', models.IntegerField(null=True, blank=True)),
+                ('age', models.IntegerField(null=True, blank=True)),
+                ('util_flag', models.IntegerField(null=True, blank=True)),
+            ],
+            options={
+                'db_table': 'zone',
+            },
+            bases=(models.Model,),
+        ),
+    ]

@@ -1413,12 +1413,6 @@ void TBeing::setArmor(short armor)
 
 bool TBeing::isAffected(uint64_t bv) const
 {
-  if (!this) 
-    {
-      vlogf(LOG_BUG, "BAD - isAffected got called with this = null, investigate!");
-      return 0;
-    }
- 
   return (specials.affectedBy & bv);
 }
 

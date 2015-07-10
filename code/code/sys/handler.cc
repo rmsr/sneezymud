@@ -2528,11 +2528,6 @@ void TBeing::remCaptive(TBeing *ch)
 {
   TBeing *t, *last;
 
-  if (!this) {
-    vlogf(LOG_BUG, "remCaptive called by NULL being.");
-    return;
-  }
-
   if (!ch->getCaptiveOf()) {
     vlogf(LOG_BUG,format("remCaptive : trying to remove %s when not a captive.") %  ch->getName());
     return;

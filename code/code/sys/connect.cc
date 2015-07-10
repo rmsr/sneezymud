@@ -460,12 +460,6 @@ return format("<snoop victim=\"%s\">%s</snoop>") %
 
 int Descriptor::outputProcessing()
 {
-// seems silly, but we sometimes do descriptor_list->outputProcessing()
-// to send everyone their output.  We need to check for the no-one-connected
-// state just for sanity.
-if (!this)
-  return 1;
-
 char i[MAX_STRING_LENGTH + MAX_STRING_LENGTH];
 int counter = 0;
 char buf[MAX_STRING_LENGTH + MAX_STRING_LENGTH];

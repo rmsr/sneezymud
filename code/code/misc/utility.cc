@@ -43,7 +43,7 @@ extern "C" {
 
 pid_t vfork(void);
 
-#ifdef __sun
+#if defined(__sun)
 extern long random(void);
 #endif
 }

@@ -824,7 +824,7 @@ int getSockReceiveBuffer(int s)
 {
   int buf = 0;
 
-#if defined(SOLARIS)
+#if defined(__sun)
   int size;
   size = sizeof(buf);
 
@@ -845,7 +845,7 @@ int getSockReceiveBuffer(int s)
 int getSockSendBuffer(int s)
 {
   int buf = 0;
-#if defined(SOLARIS)
+#if defined(__sun)
   int size;
   size = sizeof(buf);
   if (getsockopt(s, SOL_SOCKET, SO_SNDBUF, (char *) &buf, &size))
@@ -868,7 +868,7 @@ const char *getSockOptString(int s, int opt)
     size = sizeof(ld);
     ld.l_onoff = -1;        // serious error checking 
 
-#if defined(SOLARIS)
+#if defined(__sun)
     if (getsockopt(s, SOL_SOCKET, opt, (char *) &ld, &size) == -1) {
 #else
     if (getsockopt(s, SOL_SOCKET, opt, &ld, &size) == -1) {
@@ -886,7 +886,7 @@ const char *getSockOptString(int s, int opt)
     }
   }
   size = sizeof(result);
-#if defined(SOLARIS)
+#if defined(__sun)
   if (getsockopt(s, SOL_SOCKET, opt, (char *) &result, &size) == -1) {
 #elif defined(__linux__)
   if (getsockopt(s, SOL_SOCKET, opt, (char *) &result, (unsigned *) &size) == -1) {

@@ -1,6 +1,7 @@
 # hey emacs, this is -*- python -*- vim: ft=python
 import os
 import subprocess
+import sys
 
 # NOTE site_scons/site_init.py runs before this
 

@@ -1464,7 +1464,7 @@ bool zoneData::bootZone(int zone_nr)
       break;
     }
 
-    if (rs.command == '*' || gamePort == Config::Port::GAMMA) {
+    if (rs.command == '*' || Config::Trimmed()) {
       if(!fgets(buf, 255, fl))
 	vlogf(LOG_FILE, "Unexpected read error in bootZone");
       continue;

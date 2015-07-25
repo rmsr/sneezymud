@@ -26,7 +26,7 @@ bool Config::nuke_inactive_mobs;
 bool Config::load_on_death;
 bool Config::throw_format_exceptions;
 bool Config::no_specials;
-bool Config::b_trimmed;
+bool Config::trimmed;
 sstring Config::data_dir;
 bool Config::no_mail;
 
@@ -35,7 +35,6 @@ const int Config::Port::PROD_XML=7901;
 const int Config::Port::BETA=5678;
 const int Config::Port::ALPHA=6969;
 const int Config::Port::BUILDER=8900;
-const int Config::Port::GAMMA=6961;
 
 extern std::vector <std::string> db_hosts;
 extern std::vector <std::string> db_names;
@@ -68,8 +67,8 @@ bool Config::doConfiguration(int argc, char *argv[])
      "data directory to run in")
     ("no_specials,s", po::value<bool>(&no_specials)->default_value(false),
      "suppress assignment of special routines")
-    ("trimmed,t", po::value<bool>(&b_trimmed)->default_value(false),
-     "load as trimmed port")
+    ("trimmed,t", po::value<bool>(&trimmed)->default_value(false),
+     "skip loading contents of zonefiles")
     ("port,p", po::value<int>(&gamePort)->default_value(Config::Port::PROD),
      "game port")
     ;

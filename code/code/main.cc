@@ -31,10 +31,8 @@ int main(int argc, char *argv[])
   if(Config::NoSpecials())
     vlogf(LOG_MISC, "Suppressing assignment of special routines.");
 
-  if(Config::bTrimmed()){
+  if(Config::Trimmed())
     vlogf(LOG_MISC, "Loading as trimmed port.");
-    gamePort = Config::Port::GAMMA;
-  }
 
   Uptime = time(0);
 

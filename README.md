@@ -50,12 +50,12 @@ instance!
 
 ## Build Dependencies
 
-* C++ compiler, probably g++ -- Tested with version 4.7
+* C++ compiler, probably g++ -- Tested with version 4.7, 4.9
 * scons -- Tested with version 2.2.0 on Python 2.7
 * libmysqlclient -- Tested with libmysqlclient 5.5.28
 * libc-ares -- Tested with 1.9.0 and 1.10.0.
-* Boost C++ library, with 'program-options', 'regex', and 'exception' modules
-  -- Tested with 1.40, 1.50
+* Boost C++ library, with 'program-options', 'regex', and 'filesystem' modules
+  -- Tested with 1.50, 1.55
 
 ## Recommended
 
@@ -102,15 +102,8 @@ Sneezy reads and occasionally writes. To keep paths simple in the source code,
 Sneezy changes directory to the lib dir on startup. By default, Sneezy looks
 for a `lib/` subdir of the directory it was started in.
 
-First you'll need to make the required empty directories, because git doesn't
-store them (the .. part of the cmd only works in bash):
-
-    $ cd lib && mkdir -p roomdata/saved immortals \
-        corpses/corrupt rent/corrupt player/corrupt \
-        rent/{a..z} account/{a..z} player/{a..z}
-
-If you are planning to run Sneezy directly from the source tree, you're done.
-Otherwise, copy the lib directory to its new location:
+If you are planning to run Sneezy directly from the source tree, you don't
+have to do anything. Otherwise, copy the lib directory to its new location:
 
     $ cp -r lib $DEST/lib
 

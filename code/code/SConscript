@@ -16,7 +16,7 @@ libs=[libsys, libmisc, libcmd, libdisc, libgame,
       libobj, libspec, libtask]
 
 # main binary
-sneezy=env.Program('sneezy', 'main.cc', LIBS=libs + ['cares', 'boost_program_options', 'mysqlclient', 'boost_regex'])
+sneezy=env.Program('sneezy', 'main.cc', LIBS=libs + ['cares', 'boost_program_options', 'mysqlclient', 'boost_regex', 'boost_filesystem'])
 env.InstallAs('../sneezy', sneezy)
 
 # low tools

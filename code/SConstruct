@@ -112,7 +112,7 @@ if flag_debug:
 ## harden: security flags, slow runtime a bit
 if flag_harden:
     if flag_debug:
-        print >>sys.stderr(), 'WARNING: not recommended to enable both debug and harden'
+        print >>sys.stderr, 'WARNING: not recommended to enable both debug and harden'
     if gcc_version:
         # at startup, turn some elf sections RO, and prebind dynamic bindings
         env.Append(CXXFLAGS=['-Wl,-z,now', '-Wl,-z,relro'])
@@ -148,7 +148,7 @@ if flag_lto:
     elif clang_version >= (3, 0):
         env.Append(CXXFLAGS=['-flto'], LINKFLAGS=[olevel_flag, '-flto'])
     else:
-        print >>sys.stderr(), 'WARNING: compiler is too old to support LTO'
+        print >>sys.stderr, 'WARNING: compiler is too old to support LTO'
 
 
 ## gprof: emit gprof-compatible profiling during runtime

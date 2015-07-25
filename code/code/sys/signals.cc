@@ -86,8 +86,7 @@ void shutdownRequest(int)
     timeTill = time(0) + (num * SECS_PER_REAL_MIN);
   }
 
-  sprintf(buf, "<r>******* SYSTEM MESSAGE ******<z>\n\r<c>%s in %ld minute%s.<z>\n\r",
-     shutdown_or_reboot().c_str(),
+  sprintf(buf, "<r>******* SYSTEM MESSAGE ******<z>\n\r<c>Shutdown in %ld minute%s.<z>\n\r",
      ((timeTill - time(0)) / 60), (((timeTill - time(0)) / 60) == 1) ? "" : "s");
   descriptor_list->worldSend(buf, NULL);
 }

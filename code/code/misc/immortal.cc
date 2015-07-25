@@ -1413,17 +1413,6 @@ void TBeing::doShutdown(const char *)
   sendTo("Mobs shouldn't be shutting down.\n\r");
 }
 
-sstring shutdown_or_reboot()
-{
-  int rc = system("ps aux | grep reboot | grep -v grep");
- 
-  // if there is an entry, this will return 0
-  if (rc == 0)
-    return "Reboot";
-  else
-    return "Shutdown";
-}
- 
 void TPerson::doShutdown(const char *argument)
 {
   char buf[1000] = {0}, arg[256] = {0};
@@ -1442,7 +1431,7 @@ void TPerson::doShutdown(const char *argument)
       sendTo("Please do a timed shutdown to avoid complaints.\n\r");
       return;
     }
-    sprintf(buf, "<r>%s by %s.<z>\n\r", shutdown_or_reboot().c_str(), getName().c_str());
+    sprintf(buf, "<r>Shutdown by %s.<z>\n\r", getName().c_str());
     descriptor_list->worldSend(buf, this);
     Shutdown = 1;
   } else {
@@ -1462,16 +1451,15 @@ void TPerson::doShutdown(const char *argument)
       } else {
         timeTill = time(0) + (num * SECS_PER_REAL_MIN);
       }
-      sprintf(buf, "<r>******* SYSTEM MESSAGE *******\n\r%s in %d minute%s by %s.<z>\n\r<c>Use the TIME command at any point to see time until %s.<z>\n\r", 
-       shutdown_or_reboot().c_str(), num, (num == 1 ? "" : "s"),getName().c_str(),
-       shutdown_or_reboot().c_str());
+      sprintf(buf, "<r>******* SYSTEM MESSAGE *******\n\rShutdown in %d minute%s by %s.<z>\n\r<c>Use the TIME command at any point to see time until Shutdown.<z>\n\r", 
+       num, (num == 1 ? "" : "s"),getName().c_str());
       descriptor_list->worldSend(buf, this); 
     } else if (is_abbrev(arg, "abort")) {
       if (!timeTill) {
         sendTo("No shutdown has been scheduled.\n\r");
         return;
       }
-      sprintf(buf, "<r>System %s aborted by %s.<z>\n\r", shutdown_or_reboot().c_str(), getName().c_str());
+      sprintf(buf, "<r>System shutdown aborted by %s.<z>\n\r", getName().c_str());
       descriptor_list->worldSend(buf, this);
       timeTill = 0L;
     } else {

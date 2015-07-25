@@ -315,7 +315,6 @@ extern TThing *unequip_char_for_save(TBeing *ch, wearSlotT pos);
 extern bool isVitalPart(wearSlotT);
 extern bool hideThisSpell(spellNumT);
 extern void test_fight_death(TBeing *, TBeing *, int);
-extern sstring shutdown_or_reboot();
 extern void raw_write_out_object(const TObj *o, FILE *fp, unsigned int vnum);
 extern void bootPulse(const char *, bool = true);
 extern void readDissectionFile();

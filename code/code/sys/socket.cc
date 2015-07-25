@@ -340,7 +340,7 @@ bool TMainSocket::handleShutdown()
 
   if (timeTill  && (timeTill <= time(0))) {
     if (descriptor_list) {
-      buf=format("%s time has arrived!\n\r") % shutdown_or_reboot();
+      buf=format("Shutdown time has arrived!\n\r");
       descriptor_list->worldSend(buf, NULL);
       descriptor_list->outputProcessing();
     }
@@ -349,8 +349,8 @@ bool TMainSocket::handleShutdown()
     int minutes=(timeTill - time(0)) / 60;
     if (!sent) {
       buf="<r>******* SYSTEM MESSAGE ******<z>\n\r";
-      buf+=format("<c>%s in %ld minute%s.<z>\n\r") % 
-	shutdown_or_reboot() % minutes % ((minutes == 1) ? "" : "s");
+      buf+=format("<c>Shutdown in %ld minute%s.<z>\n\r")
+          % minutes % ((minutes == 1) ? "" : "s");
       descriptor_list->worldSend(buf, NULL);
     }
     sent = true;
@@ -358,8 +358,8 @@ bool TMainSocket::handleShutdown()
     long secs = timeTill - time(0);
     if (!sent) {
       buf="<r>******* SYSTEM MESSAGE ******<z>\n\r";
-      buf+=format("<c>%s in %ld second%s.<z>\n\r") %
-	shutdown_or_reboot() % secs % ((secs == 1) ? "" : "s");
+      buf+=format("<c>%s in %ld second%s.<z>\n\r")
+          % secs % ((secs == 1) ? "" : "s");
       descriptor_list->worldSend(buf, NULL);
       sent = true;
     }

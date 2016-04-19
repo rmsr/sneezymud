@@ -25,6 +25,9 @@ libs=[libsys, libmisc, libcmd, libdisc, libgame,
 if twitter:
   libs.append('curl')
 
+if twitter:
+  libs.append('curl')
+
 # main binary
 sneezy=env.Program('sneezy', 'main.cc', LIBS=libs + ['mysqlclient'])
 env.InstallAs('../sneezy', sneezy)

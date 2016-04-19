@@ -52,14 +52,6 @@ env.Install('../lowtools', [amap, sqladdmobs, sqladdobjs, sqladdresp,
                             sqledresp, sqledshop, sqledwld])
 env.Alias('lowtools', '../lowtools')
 
-# cgi
-cgi=env.Object('cgi/session.cgi.cc')
-
-mudmail=env.Program(['cgi/mudmail.cgi.cc', cgi], LIBS=libs)
-
-env.Install('../cgi', [mudmail])
-env.Alias('cgi', '../cgi')
-
 # shell tools
 econ=env.Program(['shell/econ.cc'], LIBS=libs)
 

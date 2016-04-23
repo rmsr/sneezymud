@@ -85,7 +85,6 @@ void togInfoT::loadToggles()
 {
   TDatabase db(DB_SNEEZY);
 
-
   db.query("select tog_id, toggle, testcode, name, descr from globaltoggles order by name");
   toggles[TOG_NONE] = new togEntry(false, false, "none", "none");
 

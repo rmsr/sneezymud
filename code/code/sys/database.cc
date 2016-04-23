@@ -1,3 +1,4 @@
+#ifdef DB_MYSQL
 #include <cassert>
 #include <stdarg.h>
 #include <mysql/mysql.h>
@@ -337,3 +338,4 @@ long TDatabase::rowCount(){
   // because the db pointer will have changed state if query timing is on
   return pimpl->row_count;
 }
+#endif // DB_MYSQL

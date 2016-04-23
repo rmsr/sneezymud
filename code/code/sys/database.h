@@ -1,7 +1,9 @@
 #ifndef __DATABASE_H
 #define __DATABASE_H
 
+#include <cassert>
 #include <cstring>
+#include <vector>
 
 class sstring;
 
@@ -102,24 +104,99 @@ struct ltstr
 
 class TDatabasePimpl;
 
+// Packs query parameters into one type, in a slightly safe manner
+// Rather facepalmy. Would appreciate a nicer solution which wouldn't require pulling half of Boost into headers.
+class StringOrIntOrDouble
+{
+  public:
+    enum TYPE {
+      STRING,
+      INT,
+      DOUBLE
+    };
+
+    // implicit to avoid changing existing code
+    StringOrIntOrDouble(const char* in)
+      : str_(in)
+        , int_(0)
+        , double_(0)
+        , type_(STRING)
+  {}
+    StringOrIntOrDouble(char* in)
+      : StringOrIntOrDouble(static_cast<const char*>(in))
+    {}
+    StringOrIntOrDouble(long in)
+      : str_(nullptr)
+        , int_(in)
+        , double_(0)
+        , type_(INT)
+  {}
+    StringOrIntOrDouble(unsigned long in) // SQLite doesn't like the highest bit to be set, so we can't avoid losing range
+      : StringOrIntOrDouble(static_cast<long>(in))
+    { assert(in >> 63 == 0); } // hmm, will this compile in 32-bit?
+    StringOrIntOrDouble(unsigned in)
+      : StringOrIntOrDouble(static_cast<long>(in))
+    {}
+    StringOrIntOrDouble(int in)
+      : StringOrIntOrDouble(static_cast<long>(in))
+    {}
+    StringOrIntOrDouble(double in)
+      : str_(nullptr)
+        , int_(in)
+        , double_(in)
+        , type_(DOUBLE)
+  {}
+
+    TYPE getType() const { return type_; }
+    long getInt() const { return int_; }
+    double getDouble() const { return double_; }
+    const char* getStr() const { return str_; }
+
+  private:
+    const char* const str_;
+    const int int_;
+    const double double_;
+    const TYPE type_;
+};
+
 class TDatabase
 {
- public:
-  bool query(const char *,...);
-  bool fetchRow();
-  const sstring operator[] (const sstring &) const;
-  const sstring operator[] (unsigned int) const;
-  bool isResults();
-  long rowCount();
-  long lastInsertId();
-  unsigned long escape_string(char *to, const char *from, unsigned long length);
-  static unsigned long escape_string_ugly(char *to, const char *from, unsigned long length);
+  public:
+    // Life used to be so simple in the old non-typesafe days:
+    // bool query(const char *,...);
+    template<typename... Params>
+    bool query(const char* str, Params... rest)
+    {
+      std::vector<StringOrIntOrDouble> args;
+      collectArgs(args, rest...);
+      return queryInner(str, args);
+    }
 
-  TDatabase(dbTypeT);
-  ~TDatabase();
+    bool fetchRow();
+    const sstring operator[] (const sstring &) const;
+    const sstring operator[] (unsigned int) const;
+    bool isResults();
+    long rowCount();
+    long lastInsertId();
+    unsigned long escape_string(char *to, const char *from, unsigned long length);
+    static unsigned long escape_string_ugly(char *to, const char *from, unsigned long length);
 
- private:
-  TDatabasePimpl* pimpl;
+    TDatabase(dbTypeT);
+    ~TDatabase();
+
+  private:
+    TDatabasePimpl* pimpl;
+    void collectArgs(const std::vector<StringOrIntOrDouble>& all)
+    {}
+
+    template<typename... Rest>
+    void collectArgs(std::vector<StringOrIntOrDouble>& acc, StringOrIntOrDouble current, Rest... rest)
+    {
+      acc.push_back(current);
+      collectArgs(acc, rest...);
+    }
+
+    bool queryInner(const char* str, std::vector<StringOrIntOrDouble>);
 };
 
 #endif

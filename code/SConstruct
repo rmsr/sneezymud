@@ -2,6 +2,9 @@
 from SCons.Script.SConscript import SConsEnvironment
 import os.path;
 
+# DBDRIVER = 'mysql'
+DBDRIVER = 'sqlite'
+
 CXXFLAGS = [
     '-g',             # debugger
     '-DLINUX',        # compiling on Linux
@@ -21,8 +24,6 @@ CXXFLAGS = [
     ]
 
 CPPPATH = [
-    '/usr/local/include',
-    '/usr/include/boost141',
     '#/code/cmd',
     '#/code/disc',
     '#/code/game',
@@ -30,7 +31,8 @@ CPPPATH = [
     '#/code/obj',
     '#/code/spec',
     '#/code/sys',
-    '#/code/task'
+    '#/code/task',
+    '/usr/local/include',
     ]
 
 LDFLAGS = [
@@ -53,7 +55,7 @@ env=Environment(CXXFLAGS=CXXFLAGS,
                 CXX = 'g++',
                 SHCXX = 'g++',
                 LIBTYPE = 'static',  # options: 'static', 'shared'. shared links faster, but doesn't work on Mac.
-                # options: "sqlite", "mysql"
+                DBDRIVER = DBDRIVER,
 
                 #prettified output
                 SHCXXCOMSTR = "\033[35mCompiling\033[0m $SOURCE",

@@ -26,8 +26,8 @@ CREATE TABLE `corplog` (
   `action` varchar(80) default NULL,
   `talens` int(11) default NULL,
   `corptalens` int(11) default NULL,
-  `logtime` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `logtime` timestamp NOT NULL default CURRENT_TIMESTAMP
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

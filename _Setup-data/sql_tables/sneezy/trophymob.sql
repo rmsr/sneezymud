@@ -22,7 +22,7 @@
 DROP TABLE IF EXISTS `trophymob`;
 CREATE TABLE `trophymob` (
   `mobvnum` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

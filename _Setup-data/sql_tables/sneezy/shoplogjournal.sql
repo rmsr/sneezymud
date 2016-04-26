@@ -22,18 +22,16 @@
 DROP TABLE IF EXISTS `shoplogjournal`;
 CREATE TABLE `shoplogjournal` (
   `shop_nr` int(11) default NULL,
-  `journal_id` int(11) NOT NULL auto_increment,
+  `journal_id` integer primary key autoincrement NOT NULL,
   `customer_name` text,
   `obj_name` text,
-  `logtime` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `logtime` timestamp NOT NULL default CURRENT_TIMESTAMP,
   `post_ref` int(11) default NULL,
   `debit` int(11) default NULL,
   `credit` int(11) default NULL,
-  `sneezy_year` int(11) default NULL,
-  KEY `journal_id` (`journal_id`),
-  KEY `shoplogjournal_idx` (`shop_nr`,`sneezy_year`),
-  KEY `shoplogjournal_report` (`shop_nr`,`sneezy_year`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `sneezy_year` int(11) default NULL
+) ;
+create index shoplogjournal_idx on shoplogjournal (shop_nr, sneezy_year);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

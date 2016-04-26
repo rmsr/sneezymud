@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `roomextra`;
 CREATE TABLE `roomextra` (
   `vnum` int(11) NOT NULL,
   `name` text NOT NULL,
-  `description` text NOT NULL,
-  KEY `roomextra_idx` (`vnum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `description` text NOT NULL
+) ;
+create index roomextra_idx on roomextra (vnum);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

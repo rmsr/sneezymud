@@ -25,7 +25,7 @@ CREATE TABLE `permadeath` (
   `level` int(11) default NULL,
   `died` int(11) default NULL,
   `killer` varchar(80) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

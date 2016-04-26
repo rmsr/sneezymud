@@ -24,9 +24,9 @@ CREATE TABLE `shoplogcogs` (
   `shop_nr` int(11) default NULL,
   `obj_name` varchar(128) default NULL,
   `count` int(11) default NULL,
-  `total_cost` int(11) default NULL,
-  KEY `shoplogcogs_idx` (`shop_nr`,`obj_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `total_cost` int(11) default NULL
+) ;
+create index shoplogcogs_idx on shoplogcogs (shop_nr, obj_name);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

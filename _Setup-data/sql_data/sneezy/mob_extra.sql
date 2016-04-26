@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `mob_extra` DISABLE KEYS */;
-LOCK TABLES `mob_extra` WRITE;
+
 INSERT INTO `mob_extra` VALUES (10,'bamfin','This is a <r>test<z> of the <k><n> broad<z><g>cast<z> system.'),
 (4547,'repop','A young cannibal appears suddenly in a puff of smoke.'),
 (5018,'movein','A <W>white doe<z> steps tentatively into view.'),
@@ -29,7 +29,7 @@ INSERT INTO `mob_extra` VALUES (10,'bamfin','This is a <r>test<z> of the <k><n> 
 (6460,'deathcry','331608472'),
 (6460,'repop','324946152'),
 (8950,'deathcry','The ground shakes as it connects with the lifeless body of the Rhentek nearby.'),
-(9095,'deathcry','<r>I have failed you L\'yrel!!!!!  AVENGE ME!!!'),
+(9095,'deathcry','<r>I have failed you L''yrel!!!!!  AVENGE ME!!!'),
 (9576,'deathcry','Glodo stares at nothing and whispers, \"Even death will not keep me from Niomi.....\"'),
 (10601,'deathcry','With her last burst of electrical energy, Shorenjin burns the caves walls in her death throes!'),
 (10601,'repop','The dragon Shorenjin, the Ancient bursts from the water below your feet.'),
@@ -65,14 +65,14 @@ INSERT INTO `mob_extra` VALUES (10,'bamfin','This is a <r>test<z> of the <k><n> 
 (28919,'bamfin','A trolloc walks in from a day of killing to relax.'),
 (28920,'bamfin','A trolloc walks in from a day of killing relax.'),
 (28921,'bamfin','A trolloc walks in from a night of killing to relax.'),
-(30707,'bamfout','A little girl realizes it\'s her bedtime, and rushes home.'),
+(30707,'bamfout','A little girl realizes it''s her bedtime, and rushes home.'),
 (30708,'bamfout','A wild chicken scuttles off, looking for a place to roost.'),
 (30994,'repop','A thin, <w>pale-faced<z> gnome with <r>crimson lips<z> slowly rises from <o>a small sarcophagus<1> and howls, \"What fool dares disturb the sleep of the dead?!\"'),
-(31310,'deathcry','Baron Samedi\'s soul leaps from his body and dives into the ground.'),
+(31310,'deathcry','Baron Samedi''s soul leaps from his body and dives into the ground.'),
 (33300,'bamfin','A fallow deer prances out of the forest.'),
 (33779,'movein','A <W>white doe<z> steps tentatively into view.'),
 (37138,'repop','$n appears and licks its stinking teeth.');
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `mob_extra` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

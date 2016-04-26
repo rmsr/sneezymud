@@ -25,9 +25,9 @@ CREATE TABLE `rent_strung` (
   `name` varchar(127) NOT NULL default '',
   `short_desc` varchar(127) NOT NULL default '',
   `long_desc` varchar(255) NOT NULL default '',
-  `action_desc` varchar(255) NOT NULL default '',
-  KEY `rent_strung_idx` (`rent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `action_desc` varchar(255) NOT NULL default ''
+) ;
+create index rent_strung_idx on rent_strung (rent_id);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

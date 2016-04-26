@@ -25,7 +25,7 @@ CREATE TABLE `objaffect` (
   `type` int(11) NOT NULL default '0',
   `mod1` int(11) NOT NULL default '0',
   `mod2` int(11) NOT NULL default '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `permadeath` DISABLE KEYS */;
-LOCK TABLES `permadeath` WRITE;
+
 INSERT INTO `permadeath` VALUES ('Telaqui',5,1,'a robber'),
 ('Fujisaowa',7,0,'no one'),
 ('Anda',11,1,'fire'),
@@ -57,7 +57,7 @@ INSERT INTO `permadeath` VALUES ('Telaqui',5,1,'a robber'),
 ('Seras',8,0,'no one'),
 ('Mung',20,0,'no one'),
 ('Gerard',19,1,'a dragon whelp'),
-('EeizeJr',8,1,'a <g>gnome chef\'s assistant<z>'),
+('EeizeJr',8,1,'a <g>gnome chef''s assistant<z>'),
 ('Toranaga',3,0,'no one'),
 ('Greyshoot',6,1,'Acidbear'),
 ('Planhigion',3,1,'an aspiring young shaman'),
@@ -280,7 +280,7 @@ INSERT INTO `permadeath` VALUES ('Telaqui',5,1,'a robber'),
 ('Chaynal',31,0,'no one'),
 ('Mortal',4,0,'no one'),
 ('Colambo',7,0,'no one');
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `permadeath` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

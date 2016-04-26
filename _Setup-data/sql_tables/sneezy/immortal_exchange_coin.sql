@@ -21,16 +21,15 @@
 
 DROP TABLE IF EXISTS `immortal_exchange_coin`;
 CREATE TABLE `immortal_exchange_coin` (
-  `k_coin` int(11) NOT NULL auto_increment,
+  `k_coin` integer primary key autoincrement NOT NULL,
   `created_by` int(11) default NULL,
   `created_for` int(11) default NULL,
   `redeemed_by` int(11) default NULL,
   `redeemed_for` int(11) default NULL,
   `date_created` timestamp NULL default CURRENT_TIMESTAMP,
   `date_redeemed` timestamp NULL default NULL,
-  `utility_flag` int(11) default NULL,
-  KEY `ix__immortal_exchange_coin__1` (`k_coin`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `utility_flag` int(11) default NULL
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

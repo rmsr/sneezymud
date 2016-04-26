@@ -21,7 +21,6 @@
 
 
 /*!40000 ALTER TABLE `globaltoggles` DISABLE KEYS */;
-LOCK TABLES `globaltoggles` WRITE;
 INSERT INTO `globaltoggles` VALUES (1,0,0,'No-Shouting','allow shouting'),
 (2,1,0,'Sleep offensive','sleep spell offensive'),
 (4,1,0,'Gravity','gravity'),
@@ -43,7 +42,6 @@ INSERT INTO `globaltoggles` VALUES (1,0,0,'No-Shouting','allow shouting'),
 (20,0,1,'Quest Code 3','unknown'),
 (21,0,1,'Quest Code 4','unknown'),
 (3,0,0,'Newbie PK','allow PKing of newbies');
-UNLOCK TABLES;
 /*!40000 ALTER TABLE `globaltoggles` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

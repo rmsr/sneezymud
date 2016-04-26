@@ -26,7 +26,7 @@ CREATE TABLE `shopownednpcloan` (
   `rate` double default NULL,
   `risk` double default NULL,
   `owner` int(11) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

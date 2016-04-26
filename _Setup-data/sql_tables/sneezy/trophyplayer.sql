@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `trophyplayer`;
 CREATE TABLE `trophyplayer` (
   `player_id` int(11) NOT NULL,
   `count` int(11) default NULL,
-  `total` double default NULL,
-  KEY `ix_trophyplayer_player_id` (`player_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `total` double default NULL
+) ;
+create index ix_trophyplayer_player_id on trophyplayer (player_id);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

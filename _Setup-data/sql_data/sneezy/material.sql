@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `material` DISABLE KEYS */;
-LOCK TABLES `material` WRITE;
+
 INSERT INTO `material` VALUES (0,'undefined'),
 (1,'paper'),
 (2,'cloth'),
@@ -124,7 +124,7 @@ INSERT INTO `material` VALUES (0,'undefined'),
 (174,'terbium'),
 (175,'mithril'),
 (176,'steel');
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `material` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

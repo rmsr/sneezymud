@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `rent_strung` DISABLE KEYS */;
-LOCK TABLES `rent_strung` WRITE;
+
 INSERT INTO `rent_strung` VALUES (2786,'chalk small bag tool blue','<b>a small bag of chalk<z><1>','<b>A small bag of chalk<z> is here on the $$g.<1>',''),
 (2791,'chalk small bag tool white','<W>a small bag of chalk<z><1>','<W>A small bag of chalk<z> is here on the $$g.<1>',''),
 (3448,'chalk small bag tool purple','<p>a small bag of chalk<z><1>','<p>A small bag of chalk<z> is here on the $$g.<1>',''),
@@ -3191,7 +3191,7 @@ INSERT INTO `rent_strung` VALUES (2786,'chalk small bag tool blue','<b>a small b
 (150115,'commodity bit cloth','a bit of cloth','A bit of cloth has been left here.  What luck!',''),
 (150131,'commodity bit steel','a bit of steel','A bit of steel has been left here.  What luck!',''),
 (150241,'commodity bit cloth','a bit of cloth','A bit of cloth has been left here.  What luck!',''),
-(150274,'corpse elite cityguard guard','the corpse of an <B>elite cityguard<1>','An <B>elite cityguard<1>\'s corpse has been shattered from within by a powerful shockwave.',''),
+(150274,'corpse elite cityguard guard','the corpse of an <B>elite cityguard<1>','An <B>elite cityguard<1>''s corpse has been shattered from within by a powerful shockwave.',''),
 (150129,'commodity bit cloth','a bit of cloth','A bit of cloth has been left here.  What luck!',''),
 (154147,'commodity bit leather','a bit of leather','A bit of leather has been left here.  What luck!',''),
 (154148,'commodity bit undefined','a bit of undefined','A bit of undefined has been left here.  What luck!',''),
@@ -10166,7 +10166,7 @@ INSERT INTO `rent_strung` VALUES (397893,'commodity tiny piece bone','a tiny pie
 (892412,'mine land trap','a land mine','A land mine is concealed here.',''),
 (897696,'shrike bracelet painted Pho','a painted <W>sh<1>r<r>i<1><k>k<1>e clutching a <r>red bracelet<1> bearing the insignia of Pho','<r>A red bracelet lies here, adorned with a carved bird.<1>','This is the personalized object of Pho'),
 (897697,'shrike bracelet painted Pho','a painted <W>sh<1>r<r>i<1><k>k<1>e clutching a <r>red bracelet<1> bearing the insignia of Pho','<r>A red bracelet lies here, adorned with a carved bird.<1>','This is the personalized object of Pho'),
-(897707,'scabbard darkened belt','a <k>darkened<1> scabbard with the word \'<k>CABOT<1>\' scrawled on it in sharpie','A <k>darkened<1> leather scabbard and belt lie in a heap on the $$g.','This is the personalized object of Cabot'),
+(897707,'scabbard darkened belt','a <k>darkened<1> scabbard with the word ''<k>CABOT<1>'' scrawled on it in sharpie','A <k>darkened<1> leather scabbard and belt lie in a heap on the $$g.','This is the personalized object of Cabot'),
 (898404,'flask dark green potion magical elixir','a flask of <g>dark green potion<1>','A flask of <g>dark green potion<1> sits here.',''),
 (899896,'flask dark green potion magical elixir','a flask of <g>dark green potion<1>','A flask of <g>dark green potion<1> sits here.',''),
 (899897,'flask dark green potion magical elixir','a flask of <g>dark green potion<1>','A flask of <g>dark green potion<1> sits here.',''),
@@ -10278,8 +10278,8 @@ INSERT INTO `rent_strung` VALUES (397893,'commodity tiny piece bone','a tiny pie
 (908838,'scroll crumpled scribed invisibility','<o>a crumpled invisibility scroll<1>','<o>A crumpled scroll lies here.<1>',''),
 (908839,'scroll crumpled scribed invisibility','<o>a crumpled invisibility scroll<1>','<o>A crumpled scroll lies here.<1>',''),
 (908840,'scroll crumpled scribed invisibility','<o>a crumpled invisibility scroll<1>','<o>A crumpled scroll lies here.<1>',''),
-(909314,'belt magicians','<g>a magician\'s belt<z>','A <g>magician\'s belt<z> rests here, waiting to be used.','This is the personalized object of Dumbledore'),
-(909470,'token linkbag toxir [link$toxir$1248158953$0]','a linkbag token with \'Toxir\' on it','A linkbag token for Toxir\'s belongings has been left here.',''),
+(909314,'belt magicians','<g>a magician''s belt<z>','A <g>magician''s belt<z> rests here, waiting to be used.','This is the personalized object of Dumbledore'),
+(909470,'token linkbag toxir [link$toxir$1248158953$0]','a linkbag token with ''Toxir'' on it','A linkbag token for Toxir''s belongings has been left here.',''),
 (914572,'headband sigil inscribed Taira','a sigil inscribed headband','A strange looking headband lies here.','This is the personalized object of Taira'),
 (914574,'pants heavy weight padded Taira','a pair of heavy weight padded pants','A pair of thickly padded pants are here.','This is the personalized object of Taira'),
 (919109,'commodity pile titanium','a pile of titanium','A pile of titanium has been left here.  What luck!',''),
@@ -11894,7 +11894,7 @@ INSERT INTO `rent_strung` VALUES (397893,'commodity tiny piece bone','a tiny pie
 (1254145,'commodity huge pile toughened cloth','a huge pile of toughened cloth','A huge pile of toughened cloth has been left here.  What luck!',''),
 (1254146,'commodity huge pile wood','a huge pile of wood','A huge pile of wood has been left here.  What luck!',''),
 (1254156,'commodity huge pile soft leather','a huge pile of soft leather','A huge pile of soft leather has been left here.  What luck!','');
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `rent_strung` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

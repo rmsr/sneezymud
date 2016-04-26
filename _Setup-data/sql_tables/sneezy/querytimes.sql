@@ -24,7 +24,7 @@ CREATE TABLE `querytimes` (
   `query` varchar(512) default NULL,
   `secs` double default NULL,
   `date_logged` timestamp NOT NULL default CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

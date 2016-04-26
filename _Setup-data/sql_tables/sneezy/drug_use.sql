@@ -36,9 +36,9 @@ CREATE TABLE `drug_use` (
   `last_use_mon` int(11) default NULL,
   `last_use_year` int(11) default NULL,
   `total_consumed` int(11) default NULL,
-  `current_consumed` int(11) default NULL,
-  KEY `ix_drug_use_player_id` (`player_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `current_consumed` int(11) default NULL
+) ;
+create index ix_drug_use_player_id on drug_use (player_id);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

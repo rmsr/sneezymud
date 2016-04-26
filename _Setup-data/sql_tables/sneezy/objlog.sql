@@ -22,9 +22,9 @@
 DROP TABLE IF EXISTS `objlog`;
 CREATE TABLE `objlog` (
   `vnum` int(11) NOT NULL default '0',
-  `loadtime` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `loadtime` timestamp NOT NULL default CURRENT_TIMESTAMP,
   `objcount` int(11) NOT NULL default '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

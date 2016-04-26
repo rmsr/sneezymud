@@ -26,8 +26,8 @@ CREATE TABLE `mob` (
   `short_desc` char(127) NOT NULL,
   `long_desc` char(255) NOT NULL,
   `description` text NOT NULL,
-  `actions` int(11) unsigned NOT NULL,
-  `affects` int(11) unsigned NOT NULL,
+  `actions` int(11) NOT NULL,
+  `affects` int(11) NOT NULL,
   `faction` int(11) NOT NULL,
   `fact_perc` int(11) NOT NULL,
   `letter` char(1) NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE `mob` (
   `local_sound` char(255) default NULL,
   `adjacent_sound` char(255) default NULL,
   PRIMARY KEY  (`vnum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

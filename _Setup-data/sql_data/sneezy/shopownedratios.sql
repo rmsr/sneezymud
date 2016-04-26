@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `shopownedratios` DISABLE KEYS */;
-LOCK TABLES `shopownedratios` WRITE;
+
 INSERT INTO `shopownedratios` VALUES (34,1162,2,0.1,10),
 (20,327,5,1,10),
 (113,5403,0.6,0.35,10),
@@ -378,7 +378,7 @@ INSERT INTO `shopownedratios` VALUES (34,1162,2,0.1,10),
 (58,50,1.01,1,100000),
 (81,50,1.01,1,100000),
 (238,50,1.01,1,100000);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `shopownedratios` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

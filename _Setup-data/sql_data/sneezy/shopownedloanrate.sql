@@ -21,9 +21,9 @@
 
 
 /*!40000 ALTER TABLE `shopownedloanrate` DISABLE KEYS */;
-LOCK TABLES `shopownedloanrate` WRITE;
+
 INSERT INTO `shopownedloanrate` VALUES (136,4,5000000,6);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `shopownedloanrate` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -25,7 +25,7 @@ CREATE TABLE `wholist` (
   `title` varchar(256) default NULL,
   `port` int(11) default NULL,
   `invis` int(11) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

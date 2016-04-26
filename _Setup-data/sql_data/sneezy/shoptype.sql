@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `shoptype` DISABLE KEYS */;
-LOCK TABLES `shoptype` WRITE;
+
 INSERT INTO `shoptype` VALUES (0,5),
 (0,44),
 (1,1),
@@ -360,7 +360,7 @@ INSERT INTO `shoptype` VALUES (0,5),
 (258,30),
 (30,35),
 (18,35);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `shoptype` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

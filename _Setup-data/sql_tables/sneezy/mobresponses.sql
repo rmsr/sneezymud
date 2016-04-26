@@ -22,9 +22,9 @@
 DROP TABLE IF EXISTS `mobresponses`;
 CREATE TABLE `mobresponses` (
   `vnum` int(11) NOT NULL,
-  `response` longtext NOT NULL,
-  KEY `mobresponses_idx` (`vnum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `response` longtext NOT NULL
+) ;
+create index idx_mobresponses on mobresponses (vnum);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

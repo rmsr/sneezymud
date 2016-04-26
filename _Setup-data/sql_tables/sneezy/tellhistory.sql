@@ -24,10 +24,10 @@ CREATE TABLE `tellhistory` (
   `tellfrom` varchar(80) default NULL,
   `tellto` varchar(80) default NULL,
   `tell` varchar(1024) default NULL,
-  `telltime` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-  KEY `tellhistory_idx` (`tellto`,`telltime`),
-  KEY `tellfrom` (`tellfrom`,`telltime`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `telltime` timestamp NOT NULL default CURRENT_TIMESTAMP
+) ;
+create index tellhistory_idx on tellhistory (tellto, telltime);
+create index tellfrom on tellhistory (tellfrom, telltime);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

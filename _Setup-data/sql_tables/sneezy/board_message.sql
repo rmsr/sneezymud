@@ -27,9 +27,9 @@ CREATE TABLE `board_message` (
   `date_removed` timestamp NULL default NULL,
   `subject` varchar(80) default NULL,
   `author` varchar(80) default NULL,
-  `post` text,
-  KEY `ix__board_message__1` (`board_vnum`,`date_removed`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `post` text
+) ;
+create index ix__board_message__1 on board_message (board_vnum, date_removed);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

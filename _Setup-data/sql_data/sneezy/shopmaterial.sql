@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `shopmaterial` DISABLE KEYS */;
-LOCK TABLES `shopmaterial` WRITE;
+
 INSERT INTO `shopmaterial` VALUES (85,75),
 (85,115),
 (86,18),
@@ -44,7 +44,7 @@ INSERT INTO `shopmaterial` VALUES (85,75),
 (98,69),
 (98,70),
 (98,71);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `shopmaterial` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -26,7 +26,7 @@ CREATE TABLE `lowtasks` (
   `assigned_to` varchar(80) default NULL,
   `task` text,
   `status` varchar(80) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

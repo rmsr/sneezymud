@@ -39,7 +39,7 @@ CREATE TABLE `shopowned` (
   `tax_nr` int(11) default NULL,
   `gold` int(11) default NULL,
   PRIMARY KEY  (`shop_nr`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -25,7 +25,7 @@ CREATE TABLE `mob_extra` (
   `keyword` char(32) NOT NULL default '',
   `description` char(255) default NULL,
   PRIMARY KEY  (`vnum`,`keyword`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -21,10 +21,9 @@
 
 DROP TABLE IF EXISTS `fishkeeper`;
 CREATE TABLE `fishkeeper` (
-  `name` varchar(80) NOT NULL default '',
-  `weight` double default NULL,
-  KEY `ix_fishkeeper_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `name` varchar(80) primary key NOT NULL default '',
+  `weight` double default NULL
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

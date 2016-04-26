@@ -21,8 +21,8 @@
 
 DROP TABLE IF EXISTS `player`;
 CREATE TABLE `player` (
-  `id` bigint(20) unsigned NOT NULL auto_increment,
-  `name` varchar(80) default NULL,
+  `id` integer primary key autoincrement unique NOT NULL,
+  `name` varchar(80) unique default NULL,
   `talens` int(11) default NULL,
   `title` varchar(80) default NULL,
   `account_id` int(11) default NULL,
@@ -30,11 +30,9 @@ CREATE TABLE `player` (
   `guildrank` int(11) default NULL,
   `load_room` int(11) default NULL,
   `last_logon` int(11) default NULL,
-  `nutrition` int(11) default NULL,
-  UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `player_unq_name` (`name`),
-  KEY `ix_player_name_account_id` (`name`,`account_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nutrition` int(11) default NULL
+) ;
+create index ix_player_name_account_id on player (name, account_id);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

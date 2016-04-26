@@ -26,7 +26,7 @@ CREATE TABLE `shopownedmatch` (
   `profit_buy` double default NULL,
   `profit_sell` double default NULL,
   `max_num` int(11) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

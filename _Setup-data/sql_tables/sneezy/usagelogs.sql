@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `usagelogs`;
 CREATE TABLE `usagelogs` (
   `time` int(11) default NULL,
   `players` int(11) default NULL,
-  `port` int(11) default NULL,
-  KEY `usagelogsidx` (`time`,`port`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `port` int(11) default NULL
+) ;
+create index usagelogsidx on usagelogs (time, port);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

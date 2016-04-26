@@ -33,9 +33,9 @@ CREATE TABLE `playerprompt` (
   `tank` varchar(20) default NULL,
   `piety` varchar(20) default NULL,
   `lifeforce` varchar(20) default NULL,
-  `time` varchar(20) default NULL,
-  KEY `ix_playerprompt_player_id` (`player_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `time` varchar(20) default NULL
+) ;
+create index ix_playerprompt_player_id on playerprompt (player_id);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

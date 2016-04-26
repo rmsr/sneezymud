@@ -42,7 +42,7 @@ CREATE TABLE `shop` (
   `close2` int(11) NOT NULL default '0',
   `expense_ratio` double default NULL,
   PRIMARY KEY  (`shop_nr`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

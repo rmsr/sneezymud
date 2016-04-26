@@ -24,7 +24,7 @@ CREATE TABLE `objextra` (
   `vnum` int(11) NOT NULL default '0',
   `name` varchar(127) NOT NULL default '',
   `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

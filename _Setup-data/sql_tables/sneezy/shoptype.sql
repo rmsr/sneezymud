@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `shoptype`;
 CREATE TABLE `shoptype` (
   `shop_nr` int(11) NOT NULL default '0',
   `type` int(11) NOT NULL default '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

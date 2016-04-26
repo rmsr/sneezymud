@@ -21,9 +21,9 @@
 
 
 /*!40000 ALTER TABLE `factorysupplies` DISABLE KEYS */;
-LOCK TABLES `factorysupplies` WRITE;
+
 INSERT INTO `factorysupplies` VALUES (251,1,'meat',13);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `factorysupplies` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

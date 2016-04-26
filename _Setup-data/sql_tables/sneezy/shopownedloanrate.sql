@@ -25,7 +25,7 @@ CREATE TABLE `shopownedloanrate` (
   `x` int(11) default NULL,
   `y` int(11) default NULL,
   `term` int(11) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

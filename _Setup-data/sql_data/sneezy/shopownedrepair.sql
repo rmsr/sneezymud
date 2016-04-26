@@ -21,9 +21,9 @@
 
 
 /*!40000 ALTER TABLE `shopownedrepair` DISABLE KEYS */;
-LOCK TABLES `shopownedrepair` WRITE;
+
 INSERT INTO `shopownedrepair` VALUES (127,1,1);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `shopownedrepair` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `brickquest`;
 CREATE TABLE `brickquest` (
   `numbricks` int(11) default '0',
   `name` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

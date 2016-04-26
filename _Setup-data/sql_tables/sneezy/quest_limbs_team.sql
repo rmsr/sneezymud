@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `quest_limbs_team`;
 CREATE TABLE `quest_limbs_team` (
   `team` varchar(30) default NULL,
   `player` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

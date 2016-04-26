@@ -29,9 +29,9 @@ CREATE TABLE `rent_obj_aff` (
   `modifier` int(11) NOT NULL default '0',
   `location` int(11) NOT NULL default '0',
   `modifier2` int(11) NOT NULL default '0',
-  `bitvector` int(11) NOT NULL default '0',
-  KEY `rent_obj_aff_idx` (`rent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `bitvector` int(11) NOT NULL default '0'
+) ;
+create index rent_obj_aff_idx on rent_obj_aff (rent_id);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

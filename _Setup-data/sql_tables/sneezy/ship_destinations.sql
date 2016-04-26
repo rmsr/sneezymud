@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `ship_destinations`;
 CREATE TABLE `ship_destinations` (
   `vnum` int(11) default NULL,
   `name` varchar(32) default NULL,
-  `room` int(11) default NULL,
-  KEY `ix1__ship_destinations` (`vnum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `room` int(11) default NULL
+) ;
+create index ix1__ship_destinations on ship_destinations (vnum);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -44,7 +44,32 @@ CREATE TABLE `obj` (
   `volume` int(11) NOT NULL default '0',
   `material` int(11) NOT NULL default '0',
   PRIMARY KEY  (`vnum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
+
+/*
+vnum 42
+name placeholder object list silver orb small'
+short_desc '<w>a small silver orb<1>'
+long_desc '<w>A small silver orb floats here ominously.<1>'
+anction_desc ''
+type 12
+action_flag 2098240
+wear_flag 16385
+val0 0
+val1 0
+val2 0
+val3 0
+weight 10
+price 1
+can be seen 3
+spec_proc 0
+max_exist 1
+max_struct 1
+cur_struct 1
+decay -1
+volume 1
+material 63
+*/
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

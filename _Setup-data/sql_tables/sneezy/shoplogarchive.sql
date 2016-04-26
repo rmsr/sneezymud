@@ -28,10 +28,10 @@ CREATE TABLE `shoplogarchive` (
   `talens` int(11) default NULL,
   `shoptalens` int(11) default NULL,
   `shopvalue` int(11) default NULL,
-  `logtime` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-  `itemcount` int(11) default NULL,
-  KEY `shoplogarchive_idx` (`shop_nr`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `logtime` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  `itemcount` int(11) default NULL
+) ;
+create index shoplogarchive_idx on shoplogarchive (shop_nr);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

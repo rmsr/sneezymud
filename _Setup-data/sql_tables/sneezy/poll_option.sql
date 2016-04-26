@@ -24,7 +24,7 @@ CREATE TABLE `poll_option` (
   `option_id` int(11) NOT NULL,
   `poll_id` int(11) NOT NULL,
   `descr` varchar(127) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `shopownedmatch` DISABLE KEYS */;
-LOCK TABLES `shopownedmatch` WRITE;
+
 INSERT INTO `shopownedmatch` VALUES (35,'hammer',1.2,0.01,1),
 (35,'mallet',1.2,0.01,1),
 (117,'elven-studded-leather',0.8,0.4,1),
@@ -202,7 +202,7 @@ INSERT INTO `shopownedmatch` VALUES (35,'hammer',1.2,0.01,1),
 (173,'breeches',5,1e-06,10),
 (173,'kuo',5,1e-05,10),
 (173,'luna',5,0.0001,10);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `shopownedmatch` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

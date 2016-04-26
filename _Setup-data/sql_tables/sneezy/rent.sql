@@ -21,8 +21,8 @@
 
 DROP TABLE IF EXISTS `rent`;
 CREATE TABLE `rent` (
-  `rent_id` int(11) NOT NULL auto_increment,
-  `owner_type` enum('player','shop','room','mail') default NULL,
+  `rent_id` integer primary key autoincrement NOT NULL,
+  `owner_type` text default NULL,
   `owner` int(11) NOT NULL default '0',
   `slot` int(11) NOT NULL default '0',
   `vnum` int(11) NOT NULL default '0',
@@ -40,9 +40,8 @@ CREATE TABLE `rent` (
   `material` int(11) NOT NULL default '0',
   `volume` int(11) NOT NULL default '0',
   `price` int(11) NOT NULL default '0',
-  `depreciation` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`rent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `depreciation` int(11) NOT NULL default '0'
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

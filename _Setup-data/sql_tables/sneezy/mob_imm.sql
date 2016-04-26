@@ -25,7 +25,7 @@ CREATE TABLE `mob_imm` (
   `type` int(11) NOT NULL default '0',
   `amt` int(11) default NULL,
   PRIMARY KEY  (`vnum`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

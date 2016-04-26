@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `objaffect` DISABLE KEYS */;
-LOCK TABLES `objaffect` WRITE;
+
 INSERT INTO `objaffect` VALUES (18,11,-125,0),
 (178,11,-125,0),
 (179,11,-5,0),
@@ -8353,7 +8353,7 @@ INSERT INTO `objaffect` VALUES (18,11,-125,0),
 (3992,4,5,0),
 (3992,1,5,0),
 (3992,35,5,0);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `objaffect` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `ship_destinations` DISABLE KEYS */;
-LOCK TABLES `ship_destinations` WRITE;
+
 INSERT INTO `ship_destinations` VALUES (19000,'Fishingshack',15150),
 (19000,'Mansion',26869),
 (19000,'Garbageisland',12623),
@@ -55,7 +55,7 @@ INSERT INTO `ship_destinations` VALUES (19000,'Fishingshack',15150),
 (15375,'Ranger',5408),
 (15375,'Xanesla',6301),
 (15375,'fog',13280);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `ship_destinations` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

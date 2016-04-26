@@ -22,9 +22,9 @@
 DROP TABLE IF EXISTS `wizpower`;
 CREATE TABLE `wizpower` (
   `player_id` int(11) default NULL,
-  `wizpower` int(11) default NULL,
-  KEY `wizpower_idx` (`player_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `wizpower` int(11) default NULL
+) ;
+create index wizpower_idx on wizpower (player_id);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

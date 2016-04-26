@@ -39,8 +39,27 @@ CREATE TABLE `room` (
   `height` int(11) NOT NULL,
   `spec` int(11) NOT NULL,
   PRIMARY KEY  (`vnum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
+/*
+vnum 0
+x 9
+y -5
+z -1
+name 'The Void'
+description '  You are in a large thick void.  Its nothingness extends to the edges\nof its boundaries.  Its boundaries are nothing.  Funny how that works.\n'
+zone 0
+room_flag 139264
+sector 60
+teletime 0
+teletarg 0
+telelook 0
+river_speed 0
+river_dir 0
+capacity 0
+height -1
+spec 0
+*/
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
-  `account_id` bigint(20) unsigned NOT NULL auto_increment,
+  `account_id` integer primary key autoincrement not NULL,
   `email` varchar(80) default NULL,
   `passwd` varchar(13) default NULL,
   `name` varchar(80) default NULL,
@@ -29,10 +29,9 @@ CREATE TABLE `account` (
   `term` int(11) default NULL,
   `time_adjust` int(11) default NULL,
   `flags` int(11) default NULL,
-  `last_logon` int(11) default NULL,
-  UNIQUE KEY `account_id` (`account_id`),
-  KEY `ix_account_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `last_logon` int(11) default NULL
+) ;
+create unique index ix_account_name on account (name);
 
 
 

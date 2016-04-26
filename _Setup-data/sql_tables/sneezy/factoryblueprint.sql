@@ -24,7 +24,7 @@ CREATE TABLE `factoryblueprint` (
   `vnum` int(11) default NULL,
   `supplytype` int(11) default NULL,
   `supplyamt` int(11) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

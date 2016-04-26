@@ -31,7 +31,7 @@ CREATE TABLE `zone` (
   `age` int(11) default NULL,
   `util_flag` int(11) default NULL,
   PRIMARY KEY  (`zone_nr`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -21,13 +21,12 @@
 
 DROP TABLE IF EXISTS `property`;
 CREATE TABLE `property` (
-  `id` bigint(20) unsigned NOT NULL auto_increment,
+  `id` integer primary key autoincrement not null,
   `name` varchar(80) default NULL,
   `owner` int(11) default NULL,
   `key_vnum` int(11) default NULL,
-  `entrance` int(11) default NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `entrance` int(11) default NULL
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -27,7 +27,7 @@ CREATE TABLE `quest_limbs` (
   `slot_num` int(11) NOT NULL,
   `slot_name` varchar(127) default NULL,
   `date_submitted` timestamp NOT NULL default CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

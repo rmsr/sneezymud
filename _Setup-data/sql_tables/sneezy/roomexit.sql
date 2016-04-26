@@ -30,9 +30,9 @@ CREATE TABLE `roomexit` (
   `lock_difficulty` int(11) NOT NULL,
   `weight` int(11) NOT NULL,
   `key_num` int(11) NOT NULL,
-  `destination` int(11) NOT NULL,
-  KEY `roomexit_idx` (`vnum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `destination` int(11) NOT NULL
+) ;
+create index roomexit_idx on roomexit (vnum);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

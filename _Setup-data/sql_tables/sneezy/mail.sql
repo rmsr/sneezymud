@@ -21,16 +21,15 @@
 
 DROP TABLE IF EXISTS `mail`;
 CREATE TABLE `mail` (
-  `mailid` bigint(20) unsigned NOT NULL auto_increment,
+  `mailid` integer primary key autoincrement NOT NULL,
   `port` int(11) default NULL,
   `mailfrom` varchar(80) default NULL,
   `mailto` varchar(80) default NULL,
   `timesent` varchar(32) default NULL,
   `content` varchar(4000) default NULL,
   `talens` int(11) default '0',
-  `rent_id` int(11) default '0',
-  UNIQUE KEY `mailid` (`mailid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `rent_id` int(11) default '0'
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

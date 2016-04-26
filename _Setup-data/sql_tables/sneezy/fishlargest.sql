@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `fishlargest`;
 CREATE TABLE `fishlargest` (
   `name` varchar(80) default NULL,
   `vnum` int(11) default NULL,
-  `weight` double default NULL,
-  KEY `ix_fishlargest_vnum` (`vnum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `weight` double default NULL
+) ;
+create unique index ix_fishlarges on fishlargest (vnum);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

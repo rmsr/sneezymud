@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `itemtypes`;
 CREATE TABLE `itemtypes` (
   `type` int(11) default NULL,
   `name` varchar(32) default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

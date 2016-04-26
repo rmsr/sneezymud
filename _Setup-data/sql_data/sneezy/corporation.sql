@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `corporation` DISABLE KEYS */;
-LOCK TABLES `corporation` WRITE;
+
 INSERT INTO `corporation` VALUES (1,'Small Business Alliance',4),
 (2,'Regents of the University of KYA',4),
 (3,'Fitz Inc.',4),
@@ -43,7 +43,7 @@ INSERT INTO `corporation` VALUES (1,'Small Business Alliance',4),
 (28,'Realm of the Cult of Logrus',141),
 (29,'Honorable Kingdom of Brightmoon',140),
 (30,'Sage Enterprises',4);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `corporation` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

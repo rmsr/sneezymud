@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `pings`;
 CREATE TABLE `pings` (
   `host` text,
   `pingtime` double default NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

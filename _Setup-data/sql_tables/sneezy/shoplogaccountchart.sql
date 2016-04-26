@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `shoplogaccountchart`;
 CREATE TABLE `shoplogaccountchart` (
   `post_ref` int(11) default NULL,
   `name` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

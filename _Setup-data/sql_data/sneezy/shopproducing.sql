@@ -21,7 +21,7 @@
 
 
 /*!40000 ALTER TABLE `shopproducing` DISABLE KEYS */;
-LOCK TABLES `shopproducing` WRITE;
+
 INSERT INTO `shopproducing` VALUES (1,105),
 (1,106),
 (1,107),
@@ -726,7 +726,7 @@ INSERT INTO `shopproducing` VALUES (1,105),
 (72,570),
 (72,564),
 (72,566);
-UNLOCK TABLES;
+
 /*!40000 ALTER TABLE `shopproducing` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -24,9 +24,9 @@ CREATE TABLE `trophy` (
   `player_id` int(11) NOT NULL,
   `mobvnum` int(11) NOT NULL,
   `count` double NOT NULL,
-  `totalcount` double NOT NULL,
-  KEY `trophy_idx` (`player_id`,`mobvnum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `totalcount` double NOT NULL
+) ;
+create index trophy_idx on trophy (player_id, mobvnum);
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

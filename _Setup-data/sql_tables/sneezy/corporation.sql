@@ -21,11 +21,10 @@
 
 DROP TABLE IF EXISTS `corporation`;
 CREATE TABLE `corporation` (
-  `corp_id` bigint(20) unsigned NOT NULL auto_increment,
+  `corp_id` integer primary key autoincrement NOT NULL,
   `name` varchar(80) NOT NULL,
-  `bank` int(11) default NULL,
-  UNIQUE KEY `corp_id` (`corp_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `bank` int(11) default NULL
+) ;
 
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

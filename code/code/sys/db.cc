@@ -640,6 +640,51 @@ void bootWorld(void)
   db_extras.query("select * from roomextra order by vnum asc");  
   db_extras.fetchRow();
 
+  // create an empty room to use with empty DB
+  if (!db.isResults()) {
+    allocate_room(0);
+    rp = real_roomp(0);
+    rp->setXCoord(0);
+    rp->setYCoord(0);
+    rp->setZCoord(0);
+    rp->name="Dummy room";
+    rp->setDescr("You don't have any rooms in the database. I created this room so that you'd have something to be in.");
+    if (!zone_table.empty()) {
+      unsigned int z;
+      for (z = 0; rp->number>zone_table[z].top && z<zone_table.size(); z++);
+
+      if (z >= zone_table.size()) {
+        vlogf(LOG_EDIT, format("Room %d is outside of any zone.\n") % rp->number);
+        exit(0);
+      }
+      rp->setZoneNum(z);
+      ///
+      rp->setRoomFlags(139264);
+      rp->setSectorType(mapFileToSector(60));
+      rp->setTeleTime(0);
+      rp->setTeleTarg(0);
+      rp->setTeleLook(0);
+      rp->setRiverSpeed(0);
+      rp->setRiverDir(mapFileToDir(0));
+      rp->setMoblim(0);
+      rp->setRoomHeight(-1);
+      rp->spec = 0;
+      rp->setLight(0);
+      rp->setHasWindow(0);
+      rp->ex_description = nullptr;
+
+
+      dirTypeT dir;
+      for (dir = MIN_DIR; dir < MAX_DIR; dir++)
+        rp->dir_option[dir] = 0;
+
+      roomCount++;
+
+      if (rp->isRoomFlag(ROOM_SAVE_ROOM))
+        rp->loadItems();
+    }
+  }
+
   while(db.fetchRow()){
     virtual_nr=convertTo<int>(db["vnum"]);
 
@@ -2396,35 +2441,64 @@ TObj *read_object(int nr, readFileTypeT type)
 
   } else {
     db.query("select type, action_flag, wear_flag, val0, val1, val2, val3, weight, price, can_be_seen, spec_proc, max_struct, cur_struct, decay, volume, material, max_exist from obj where vnum=%i", obj_index[nr].virt);
-  
-    if(!db.fetchRow())
-      return NULL;
-    
-    obj = makeNewObj(mapFileToItemType(convertTo<int>(db["type"])));
-    obj->number=nr;
-    if (!obj->isObjStat(ITEM_STRUNG)) {
-      obj->name = obj_index[nr].name;
-      obj->shortDescr = obj_index[nr].short_desc;
-      obj->setDescr(obj_index[nr].long_desc);
-      obj->action_description = obj_index[nr].description;
-      obj->ex_description=obj_index[nr].ex_description;
+
+    if(!db.fetchRow()) {
+      // on clean DB, create the placeholder object
+      if (obj_index[nr].virt == 42) {
+        obj = makeNewObj(mapFileToItemType(12));
+        obj->number=nr;
+        if (!obj->isObjStat(ITEM_STRUNG)) {
+          obj->name = obj_index[nr].name;
+          obj->shortDescr = obj_index[nr].short_desc;
+          obj->setDescr(obj_index[nr].long_desc);
+          obj->action_description = obj_index[nr].description;
+          obj->ex_description=obj_index[nr].ex_description;
+        }
+        obj->setObjStat(2098240);
+        obj->obj_flags.wear_flags = 16385;
+        obj->assignFourValues(0, 0, 0, 0);
+        obj->setWeight(10);
+        obj->obj_flags.cost = 1;
+        obj->canBeSeen = 3;
+        obj->spec = 0;
+        obj->setMaxStructPoints(1);
+        obj->setStructPoints(1);
+        obj->setDepreciation(0);
+        obj->obj_flags.decay_time= - 1;
+        obj->setVolume(1);
+        obj->setMaterial(63);
+        obj->max_exist = 1;
+      } else {
+        return NULL;
+      }
+    } else {
+
+      obj = makeNewObj(mapFileToItemType(convertTo<int>(db["type"])));
+      obj->number=nr;
+      if (!obj->isObjStat(ITEM_STRUNG)) {
+        obj->name = obj_index[nr].name;
+        obj->shortDescr = obj_index[nr].short_desc;
+        obj->setDescr(obj_index[nr].long_desc);
+        obj->action_description = obj_index[nr].description;
+        obj->ex_description=obj_index[nr].ex_description;
+      }
+      obj->setObjStat(convertTo<int>(db["action_flag"]));
+      obj->obj_flags.wear_flags = convertTo<int>(db["wear_flag"]);
+      obj->assignFourValues(convertTo<int>(db["val0"]), convertTo<int>(db["val1"]), convertTo<int>(db["val2"]), convertTo<int>(db["val3"]));
+      obj->setWeight(convertTo<float>(db["weight"]));
+      obj->obj_flags.cost = convertTo<int>(db["price"]);
+      obj->canBeSeen = convertTo<int>(db["can_be_seen"]);
+      obj->spec = convertTo<int>(db["spec_proc"]);
+      obj->setMaxStructPoints(convertTo<int>(db["max_struct"]));
+      obj->setStructPoints(convertTo<int>(db["cur_struct"]));
+      obj->setDepreciation(0);
+      obj->obj_flags.decay_time=convertTo<int>(db["decay"]);
+      obj->setVolume(convertTo<int>(db["volume"]));
+      obj->setMaterial(convertTo<int>(db["material"]));
+      obj->max_exist = convertTo<int>(db["max_exist"]);
     }
-    obj->setObjStat(convertTo<int>(db["action_flag"]));
-    obj->obj_flags.wear_flags = convertTo<int>(db["wear_flag"]);
-    obj->assignFourValues(convertTo<int>(db["val0"]), convertTo<int>(db["val1"]), convertTo<int>(db["val2"]), convertTo<int>(db["val3"]));
-    obj->setWeight(convertTo<float>(db["weight"]));
-    obj->obj_flags.cost = convertTo<int>(db["price"]);
-    obj->canBeSeen = convertTo<int>(db["can_be_seen"]);
-    obj->spec = convertTo<int>(db["spec_proc"]);
-    obj->setMaxStructPoints(convertTo<int>(db["max_struct"]));
-    obj->setStructPoints(convertTo<int>(db["cur_struct"]));
-    obj->setDepreciation(0);
-    obj->obj_flags.decay_time=convertTo<int>(db["decay"]);
-    obj->setVolume(convertTo<int>(db["volume"]));
-    obj->setMaterial(convertTo<int>(db["material"]));
-    obj->max_exist = convertTo<int>(db["max_exist"]);
   }
-  
+
 
   for(i=0;i<MAX_OBJ_AFFECT;++i){
     obj->affected[i].location = obj_index[nr].affected[i].location;
@@ -2464,23 +2538,44 @@ TObj *read_object(int nr, readFileTypeT type)
     cached_object *c=new cached_object;
     
     c->number=nr;
-    c->s["type"]=db["type"];
-    c->s["action_flag"]=db["action_flag"];
-    c->s["wear_flag"]=db["wear_flag"];
-    c->s["val0"]=db["val0"];
-    c->s["val1"]=db["val1"];
-    c->s["val2"]=db["val2"];
-    c->s["val3"]=db["val3"];
-    c->s["weight"]=db["weight"];
-    c->s["price"]=db["price"];
-    c->s["can_be_seen"]=db["can_be_seen"];
-    c->s["spec_proc"]=db["spec_proc"];
-    c->s["max_struct"]=db["max_struct"];
-    c->s["cur_struct"]=db["cur_struct"];
-    c->s["decay"]=db["decay"];
-    c->s["volume"]=db["volume"];
-    c->s["material"]=db["material"];
-    c->s["max_exist"]=db["max_exist"];
+    // on clean DB, create the placeholder object
+    if (obj_index[nr].virt == 42) {
+      c->s["type"]="12";
+      c->s["action_flag"]="2098240";
+      c->s["wear_flag"]="16385";
+      c->s["val0"]="0";
+      c->s["val1"]="0";
+      c->s["val2"]="0";
+      c->s["val3"]="0";
+      c->s["weight"]="10";
+      c->s["price"]="1";
+      c->s["can_be_seen"]="3";
+      c->s["spec_proc"]="0";
+      c->s["max_struct"]="1";
+      c->s["cur_struct"]="0";
+      c->s["decay"]="-1";
+      c->s["volume"]="1";
+      c->s["material"]="63";
+      c->s["max_exist"]="1";
+    } else {
+      c->s["type"]=db["type"];
+      c->s["action_flag"]=db["action_flag"];
+      c->s["wear_flag"]=db["wear_flag"];
+      c->s["val0"]=db["val0"];
+      c->s["val1"]=db["val1"];
+      c->s["val2"]=db["val2"];
+      c->s["val3"]=db["val3"];
+      c->s["weight"]=db["weight"];
+      c->s["price"]=db["price"];
+      c->s["can_be_seen"]=db["can_be_seen"];
+      c->s["spec_proc"]=db["spec_proc"];
+      c->s["max_struct"]=db["max_struct"];
+      c->s["cur_struct"]=db["cur_struct"];
+      c->s["decay"]=db["decay"];
+      c->s["volume"]=db["volume"];
+      c->s["material"]=db["material"];
+      c->s["max_exist"]=db["max_exist"];
+    }
 
     obj_cache.cache[c->number]=c;
   }

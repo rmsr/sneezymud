@@ -818,10 +818,17 @@ void TPerson::loadFromSt(charFile *st)
 
   // tacked on account and player id here
   db.query("select id as player_id, account_id, load_room from player where id = %i", getPlayerID());
-  db.fetchRow();
-  in_room = convertTo<int>(db["load_room"]);
-  player.account_id = convertTo<int>(db["account_id"]);
-  player.player_id = convertTo<int>(db["player_id"]);
+  if (db.isResults()) {
+    db.fetchRow();
+    in_room = convertTo<int>(db["load_room"]);
+    player.account_id = convertTo<int>(db["account_id"]);
+    player.player_id = convertTo<int>(db["player_id"]);
+  } else {
+    vlogf(LOG_BUG, format("Player %s not found in DB") %  getPlayerID());
+    in_room = 0;
+    player.account_id = -1;
+    player.player_id = -1;
+  }
   if(!in_room && st->load_room)
     in_room = st->load_room;
 
@@ -1703,7 +1710,7 @@ void TBeing::saveTitle()
     return;
 
   db.query("update player set title='%s' where id=%i", 
-	   tp->title, getPlayerID());
+	   tp->title ? tp->title : "", getPlayerID());
 }
 
 void TBeing::loadTitle()

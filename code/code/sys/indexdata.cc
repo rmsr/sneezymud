@@ -284,6 +284,25 @@ void generate_obj_index()
     }
 
     obj_index.push_back(*tmpi);
+    
+    delete tmpi;
+  }
+
+  // on clean DB, create the placeholder object
+  if (obj_index.empty()) {
+    tmpi = new objIndexData(); // hehe
+    tmpi->virt=42;
+    tmpi->name=mud_str_dup("placeholder object list silver orb small");
+    tmpi->short_desc=mud_str_dup("<w>a small silver orb<1>");
+    tmpi->long_desc=mud_str_dup("<w>A small silver orb floats here ominously.<1>");
+    tmpi->max_exist=1;
+    tmpi->spec=0;
+    tmpi->weight=10;
+    tmpi->max_struct=1;
+    tmpi->where_worn=16385;
+    tmpi->itemtype=12;
+    tmpi->value=1;
+    obj_index.push_back(*tmpi);
     delete tmpi;
   }
 

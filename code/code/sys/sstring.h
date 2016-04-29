@@ -37,7 +37,6 @@ public:
   const sstring trim() const;
   const sstring capitalizeSentences() const;
   const sstring matchCase(const sstring match) const;
-  const sstring escape() const;
   sstring escapeJson() const;
   const sstring ansiToAard() const;
   const size_t lengthNoColor() const;

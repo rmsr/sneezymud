@@ -273,17 +273,6 @@ bool TDatabase::fetchRow() {
   }
 }
 
-unsigned long TDatabase::escape_string(char *to, const char *from, unsigned long length) {
-  error() << "escape_string";
-  return 0;
-}
-
-unsigned long TDatabase::escape_string_ugly(char *to, const char *from, unsigned long length) {
-  error() << "escape_string ugly";
-  TDatabase sn(DB_SNEEZY);
-  return sn.escape_string(to, from, length);
-}
-
 const sstring TDatabase::operator[] (unsigned int i) const {
   if (i >= pimpl->res.size())
     error() << "Out-of-range access " << i;

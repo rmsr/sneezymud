@@ -180,10 +180,10 @@ void TShopOwned::COGS_add(const sstring &name, int amt, int num)
     // this needs to be done immediately, otherwise there will be multiple
     // inserts queued up the next time COGS_add() is called, if the queue
     // hasn't been processed yet.
-    db.query("insert into shoplogcogs (shop_nr, obj_name, count, total_cost) values (%i, '%s', %i, %i)", shop_nr, name.escape().c_str(), num, amt);
+    db.query("insert into shoplogcogs (shop_nr, obj_name, count, total_cost) values (%i, '%s', %i, %i)", shop_nr, name.c_str(), num, amt);
     //    queryqueue.push(format("insert into shoplogcogs (shop_nr, obj_name, count, total_cost) values (%i, '%s', %i, %i)") % shop_nr % name.escape() % num % amt);
   } else {
-    queryqueue.push(format("update shoplogcogs set count=count+%i, total_cost=total_cost+%i where obj_name='%s' and shop_nr=%i") % num % amt % name.escape() % shop_nr);
+    queryqueue.push(format("update shoplogcogs set count=count+%i, total_cost=total_cost+%i where obj_name='%s' and shop_nr=%i") % num % amt % name % shop_nr);
   }
 }
 
@@ -193,7 +193,7 @@ void TShopOwned::COGS_remove(const sstring &name, int num)
 
   //  db.query("update shoplogcogs set total_cost=total_cost-((total_cost/count)*%i), count=count-%i where obj_name='%s' and shop_nr=%i", num, num, name.c_str(), shop_nr);
 
-  queryqueue.push(format("update shoplogcogs set total_cost=floor(total_cost-(total_cost/count)*%i), count=count-%i where obj_name='%s' and shop_nr=%i") % num % num % name.escape() % shop_nr);
+  queryqueue.push(format("update shoplogcogs set total_cost=floor(total_cost-(total_cost/count)*%i), count=count-%i where obj_name='%s' and shop_nr=%i") % num % num % name % shop_nr);
 }
 
 int TShopOwned::COGS_get(const sstring &name, int num)

@@ -2030,7 +2030,6 @@ static bool shopping_look(const char *arg, TBeing *ch, TMonster *keeper, int sho
   TObj *temp1;
   int rent_id;
   TDatabase db(DB_SNEEZY);
-  char buf[256];
 
   if (!*arg) 
     return FALSE;   // generic: look
@@ -2043,13 +2042,9 @@ static bool shopping_look(const char *arg, TBeing *ch, TMonster *keeper, int sho
     sstring arg_words=arg;
     arg_words=arg_words.replaceString("-"," ");
 
-	 // %s already gets espaced in 'query' method. Why the double escape?
     for(int i=0;!arg_words.word(i).empty();++i){
-      db.escape_string(buf, arg_words.word(i).c_str(), arg_words.word(i).length());
-
-      query += format("and ((rs.name is not null and rs.name like '%s%s%s') or (o.name like '%s%s%s'))") % 
-	"%%" % buf % "%%" %
-	"%%" % buf % "%%";
+      auto match = std::string("%") + arg_words.word(i) + "%";
+      query += format("and ((rs.name is not null and rs.name like '%s') or (o.name like '%s'))") % match % match;
     }
 
     db.query(query.c_str(), shop_nr);
@@ -2090,7 +2085,6 @@ static bool shopping_evaluate(const char *arg, TBeing *ch, TMonster *keeper, int
   char newarg[100];
   int num;
   TObj *temp1;
-  char buf[256];
   int rent_id;
   TDatabase db(DB_SNEEZY);
 
@@ -2111,13 +2105,9 @@ static bool shopping_evaluate(const char *arg, TBeing *ch, TMonster *keeper, int
     sstring arg_words=arg;
     arg_words=arg_words.replaceString("-"," ");
 
-	 // %s already gets espaced in 'query' method. Why the double escape?
     for(int i=0;!arg_words.word(i).empty();++i){
-      db.escape_string(buf, arg_words.word(i).c_str(), arg_words.word(i).length());
-
-      query += format("and ((rs.name is not null and rs.name like '%s%s%s') or (o.name like '%s%s%s'))") % 
-	"%%" % buf % "%%" %
-	"%%" % buf % "%%";
+      auto match = std::string("%") + arg_words.word(i) + "%";
+      query += format("and ((rs.name is not null and rs.name like '%s') or (o.name like '%s'))") % match % match;
     }
 
     db.query(query.c_str(), shop_nr);

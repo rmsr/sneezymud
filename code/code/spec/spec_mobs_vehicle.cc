@@ -395,25 +395,25 @@ int casinoElevatorGuard(TBeing *ch, cmdTypeT cmd, const char *, TMonster *myself
 }
 
 class ship_masters {
-	/* class to handle ship captains and methods to see who can control them */
-public:
-	std::map<int, int> captains;
-	ship_masters () {
-		// captain vnum, ship vnum
-	  captains.insert(std::make_pair(19000, 19077)); // captain matho & the tequila sunrise
-	  captains.insert(std::make_pair(15375, 15375)); // viking norseman & the viking ship of shopping
-	}
-	int may_control (TMonster *captain, TBeing *ersatz_master) {
-		if (!ersatz_master)
-			return FALSE;
-		TDatabase db(DB_SNEEZY);
-		db.query("select case when account_id = %i then 2 when player_id = %i then 1 else 0 end as privileges from ship_master where captain_vnum =  %i and (account_id = %i or player_id = %i)", ersatz_master->desc->account->account_id, ersatz_master->desc->playerID, captain->mobVnum(), ersatz_master->desc->account->account_id, ersatz_master->desc->playerID);
-		if(!db.fetchRow()){
-		  return 0;
-		} else {
-			return convertTo<int>(db["privileges"]);
-		}
-	}
+  /* class to handle ship captains and methods to see who can control them */
+  public:
+    std::map<int, int> captains;
+    ship_masters () {
+      // captain vnum, ship vnum
+      captains.insert(std::make_pair(19000, 19077)); // captain matho & the tequila sunrise
+      captains.insert(std::make_pair(15375, 15375)); // viking norseman & the viking ship of shopping
+    }
+    int may_control (TMonster *captain, TBeing *ersatz_master) {
+      if (!ersatz_master)
+        return FALSE;
+      TDatabase db(DB_SNEEZY);
+      db.query("select case when account_id = %i then 2 when player_id = %i then 1 else 0 end as privileges from ship_master where captain_vnum =  %i and (account_id = %i or player_id = %i)", ersatz_master->desc->account->account_id, ersatz_master->desc->playerID, captain->mobVnum(), ersatz_master->desc->account->account_id, ersatz_master->desc->playerID);
+      if(!db.fetchRow()){
+        return 0;
+      } else {
+        return convertTo<int>(db["privileges"]);
+      }
+    }
 };
 
 ship_masters captains_and_masters; // singleton instance
@@ -518,6 +518,9 @@ int shipCaptain(TBeing *ch, cmdTypeT cmd, const char *arg, TMonster *myself, TOb
       myself->doSay("I shall not alter the charts for the likes of ye, missy.");
     }
   } else if (argument.word(1) == "sail" || argument.word(1) == "cruise") {
+  				myself->doSay("Cruise? Sail? You gotta be kidding me. Dude, there will be no cruising until someone fixes the escaping in the SQL queries.");
+  				return TRUE;
+				/*
     	// make for a destination
       if (argument.word(2).empty()) {
     		// what is our current destination?
@@ -569,6 +572,7 @@ int shipCaptain(TBeing *ch, cmdTypeT cmd, const char *arg, TMonster *myself, TOb
 	    job->cruise=false;
 	}
       }
+		*/
     } else if(argument.word(1) == "stop") {
       myself->doSay("Sail here, sail there, stop here, for the love o' me beard make up yer mind!");
       myself->doDrive("stop");

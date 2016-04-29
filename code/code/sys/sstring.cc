@@ -10,32 +10,6 @@
 #include "database.h"
 
 
-void br()
-{
-    vlogf(LOG_BUG, "sstring::escape(): TODO implement");
-}
-
-const sstring sstring::escape() const
-{
-  sstring oBuf;
-  unsigned int MY_MAX_STRING_LENGTH=MAX_STRING_LENGTH * 2;
-
-  char buf[MY_MAX_STRING_LENGTH];
-  TDatabase::escape_string_ugly(buf, c_str(), strlen(c_str()));
-  oBuf=(sstring)buf;
-
-  if(oBuf.length() == MY_MAX_STRING_LENGTH - 1){
-    vlogf(LOG_BUG, "sstring::escape(): buffer reached MAX_STRING_LENGTH");
-
-    // avoid formatting just to be safe
-    vlogf(LOG_BUG, sstring("sstring::escape(): buffer=")+
-	  oBuf.substr(70));
-  }
-
-  return oBuf;
-}
-
-
 const sstring sstring::ansiToAard() const
 {
   sstring oBuf;

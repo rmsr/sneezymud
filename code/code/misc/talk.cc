@@ -896,7 +896,7 @@ int TBeing::doTell(const sstring &name, const sstring &message, bool visible)
   if (dynamic_cast<TMonster *>(vict) && !(vict->desc)) {
     // no mob spam in tell history
   } else {
-    queryqueue.push(format("insert into tellhistory (tellfrom, tellto, tell) values ('%s', '%s', '%s')") % capbuf.cap().escape() % ((sstring)vict->getName()).escape() % garbed.escape());
+    queryqueue.push(format("insert into tellhistory (tellfrom, tellto, tell) values ('%s', '%s', '%s')") % capbuf.cap() % ((sstring)vict->getName()) % garbed);
   }
 
 

@@ -316,8 +316,8 @@ bool raw_save_char(const char *name, charFile *char_element)
   fclose(fl);
 
   TDatabase db(DB_SNEEZY);
-  db.query("update player p, account a set p.talens=%i, p.account_id=a.account_id where lower(p.name)=lower('%s') and a.name='%s'",
-	   char_element->money, name, char_element->aname);
+  db.query("update player set talens=%i, account_id=(select account_id from account where name = '%s') where lower(name)=lower('%s')",
+	   char_element->money, char_element->aname, name);
 
   return TRUE;
 }

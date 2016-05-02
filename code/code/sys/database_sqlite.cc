@@ -79,6 +79,10 @@ namespace {
         debug() << "sqlite3_close " << name << ": " << sqlite3_close(db);
       }
 
+      long lastInsertId() {
+        return sqlite3_last_insert_rowid(db);
+      }
+
       void getColumnNames(sqlite3_stmt* stmt, std::vector<std::string>& columnNames) {
         for (int i = 0; i < sqlite3_column_count(stmt); ++i)
           columnNames.push_back(sqlite3_column_name(stmt, i));
@@ -248,8 +252,7 @@ TDatabase::~TDatabase()
 }
 
 long TDatabase::lastInsertId() {
-  error() << "lastInsertId";
-  return 0;
+  return pimpl->db.lastInsertId();
 }
 
 bool TDatabase::fetchRow() {

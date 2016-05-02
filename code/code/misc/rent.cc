@@ -496,10 +496,8 @@ int ItemSaveDB::raw_write_item(TObj *o, int slot, int container, int rent_id)
 	     o->getMaterial(), o->obj_flags.volume, o->obj_flags.cost,
 	     o->getDepreciation());
     
-    db.query("select last_insert_id() as rent_id");
-    db.fetchRow();
+    rent_id=db.lastInsertId();
 
-    rent_id=convertTo<int>(db["rent_id"]);
     if (0 == rent_id)
       vlogf(LOG_BUG, "Error in rent_id, value is 0 - this code should be switched to use db.lastInsertId()");
   } else {

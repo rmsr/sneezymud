@@ -137,6 +137,7 @@ env.Append(CXXFLAGS=olevel_flag)
 
 
 ## debug: runtime bug detection with high overhead
+# note: using clang_version >= (3, 9) as hack to detect Apple clang
 if flag_debug:
     if flag_harden:
         print >>sys.stderr, 'WARNING: setting harden=off because debug=on'
@@ -153,7 +154,8 @@ if flag_debug:
         env.Append(extra_libs=['ubsan'])
     # memory error sanitizer
     env.Append(CXXFLAGS='-fsanitize=address')
-    env.Append(extra_libs=['asan'])
+    if clang_version >= (3, 9):
+        env.Append(extra_libs=['asan'])
     if clang_version >= (3, 9) or gcc_version >= (7, 0):
         env.Append(CXXFLAGS='-fsanitize-address-use-after-scope')
     # integer sanitizer

@@ -23,7 +23,7 @@ matrix:
           env: TYPE=prod lto=1 shared=0 debug=0
         - os: osx
           compiler: clang
-          env: TYPE=debug lto=0 shared=0 debug=1
+          env: TYPE=debug lto=0 shared=0 debug=0
 #        - os: osx
 #          compiler: clang
 #          env: TYPE=prod lto=0 shared=0 debug=0

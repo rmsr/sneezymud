@@ -1326,10 +1326,7 @@ void TBeing::rawBlind(int level, int duration, saveTypeT save)
   aff.type = SPELL_BLINDNESS;
   aff.bitvector = AFF_BLIND;
   aff.level = level;
-  aff.duration = duration;
-
-  if (save)
-    duration /= 2;
+  aff.duration /= (save ? 2 : 1);
 
   if((knows_bf=doesKnowSkill(SKILL_BLINDFIGHTING)))
     bf_mod=(getSkillValue(SKILL_BLINDFIGHTING)+24)/25;

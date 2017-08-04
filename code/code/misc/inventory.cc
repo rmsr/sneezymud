@@ -1241,7 +1241,8 @@ int TBeing::doGive(const sstring &oarg, giveTypeT flags)
       }
     }
     doQueueSave();
-    vict->doQueueSave();
+    if (vict)
+        vict->doQueueSave();
   }
   return TRUE;
 }

@@ -10,6 +10,8 @@
 /tags
 cscope.out
 
+cppcheck
+
 # dynamically changing mud files
 /lib/account/
 /lib/immortals/

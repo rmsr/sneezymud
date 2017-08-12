@@ -1,0 +1,12 @@
+engines:
+    cppcheck:
+        enabled: true
+        config:
+            check:
+                - warning
+                - unusedFunction
+            includes: code/code
+
+ratings:
+    paths:
+        - code/code/**.cc
